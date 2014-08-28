@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SexStore.Models", "SexStore.Models\SexStore.Models.csproj", "{F07BE725-3CEF-44B6-BF90-3AC649E37DAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLServer.Data", "SQLServer.Data\SQLServer.Data.csproj", "{4037B777-A3BB-4CC7-8BCA-83F84B00FB4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySQL.Data", "MySQL.Data\MySQL.Data.csproj", "{F8A67584-9004-406D-9DA1-42F5FDC93C10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLite.Data", "SQLite.Data\SQLite.Data.csproj", "{AF44C4C3-BE13-4FB4-871A-44DC4883B149}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SexStore.Client", "SexStore.Client\SexStore.Client.csproj", "{541B0CD5-B396-427C-B0EF-2CEA7D116580}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F07BE725-3CEF-44B6-BF90-3AC649E37DAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F07BE725-3CEF-44B6-BF90-3AC649E37DAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F07BE725-3CEF-44B6-BF90-3AC649E37DAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F07BE725-3CEF-44B6-BF90-3AC649E37DAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4037B777-A3BB-4CC7-8BCA-83F84B00FB4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4037B777-A3BB-4CC7-8BCA-83F84B00FB4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4037B777-A3BB-4CC7-8BCA-83F84B00FB4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4037B777-A3BB-4CC7-8BCA-83F84B00FB4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8A67584-9004-406D-9DA1-42F5FDC93C10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8A67584-9004-406D-9DA1-42F5FDC93C10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8A67584-9004-406D-9DA1-42F5FDC93C10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8A67584-9004-406D-9DA1-42F5FDC93C10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF44C4C3-BE13-4FB4-871A-44DC4883B149}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF44C4C3-BE13-4FB4-871A-44DC4883B149}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF44C4C3-BE13-4FB4-871A-44DC4883B149}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF44C4C3-BE13-4FB4-871A-44DC4883B149}.Release|Any CPU.Build.0 = Release|Any CPU
+		{541B0CD5-B396-427C-B0EF-2CEA7D116580}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{541B0CD5-B396-427C-B0EF-2CEA7D116580}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{541B0CD5-B396-427C-B0EF-2CEA7D116580}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{541B0CD5-B396-427C-B0EF-2CEA7D116580}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
