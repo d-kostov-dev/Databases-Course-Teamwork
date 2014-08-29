@@ -19,10 +19,10 @@ namespace SQLServer.Data.Migrations
         {
             //// This method will be called after migrating to the latest version.
 
-            context.Cities.AddOrUpdate(new City() { Name = "Sofia"});
-            context.Cities.AddOrUpdate(new City() { Name = "Plovdiv" });
-            context.Cities.AddOrUpdate(new City() { Name = "Varna" });
-            context.Cities.AddOrUpdate(new City() { Name = "Bourgas" });
+            context.Cities.AddOrUpdate(new City() { ID = 1, Name = "Sofia" });
+            context.Cities.AddOrUpdate(new City() { ID = 2, Name = "Plovdiv" });
+            context.Cities.AddOrUpdate(new City() { ID = 3, Name = "Varna" });
+            context.Cities.AddOrUpdate(new City() { ID = 4, Name = "Bourgas" });
         }
     }
 }
