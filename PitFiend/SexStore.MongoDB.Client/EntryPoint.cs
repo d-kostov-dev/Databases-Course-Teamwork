@@ -5,8 +5,7 @@ namespace SexStore.MongoDB.Client
 {
     using System;
     using System.Linq;
-    using MongoDB.Models;
-
+        
     public class EntryPoint
     {
         public static void Main()
