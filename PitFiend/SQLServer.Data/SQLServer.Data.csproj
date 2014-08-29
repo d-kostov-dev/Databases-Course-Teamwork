@@ -46,10 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContextFactory.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLServerContext.cs" />
+    <Compile Include="SQLServerContextFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
