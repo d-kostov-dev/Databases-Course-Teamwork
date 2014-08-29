@@ -40,6 +40,7 @@ namespace SQLServer.Data.Migrations
             var productOne = new Product()
             {
                 ID = 1,
+                ProductCode = 1001,
                 Name = "Miss Dulboko Gurlo",
                 Description = "Sex Doll",
                 Price = 99.99,
@@ -54,6 +55,7 @@ namespace SQLServer.Data.Migrations
             var productTwo = new Product()
             {
                 ID = 2,
+                ProductCode = 1002,
                 Name = "Jumbo Penetrator 3000",
                 Description = "WOW",
                 Price = 19.99,
@@ -68,6 +70,7 @@ namespace SQLServer.Data.Migrations
             var productThree = new Product()
             {
                 ID = 3,
+                ProductCode = 1003,
                 Name = "Dildo Bagings",
                 Description = "Small vibrator.",
                 Price = 23.99,
@@ -82,6 +85,7 @@ namespace SQLServer.Data.Migrations
             var productFour = new Product()
             {
                 ID = 4,
+                ProductCode = 1004,
                 Name = "Exotic Liquids",
                 Description = "Lubricant",
                 Price = 5.99,

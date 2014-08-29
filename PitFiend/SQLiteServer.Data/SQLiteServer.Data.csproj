@@ -61,12 +61,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ProductInfo.cs" />
-    <Compile Include="SQLiteServer.cs" />
+    <Compile Include="SQLiteServConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="SexStoreProductInfo.sqlite" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="x64\SQLite.Interop.dll">

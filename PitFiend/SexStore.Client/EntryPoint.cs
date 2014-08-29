@@ -3,6 +3,7 @@
     using System;
     using System.Data.Entity;
     using SQLServer.Data;
+    using SQLiteServer.Data;
 
     public class EntryPoint
     {
@@ -56,6 +57,19 @@
                 foreach (var sale in sales)
                 {
                     Console.WriteLine("Sale product: {0}, Date:{1}, Quantity: {2}", sale.Product.Name, sale.SaleDate, sale.Quantity);
+                }
+
+                Console.WriteLine();
+                Console.WriteLine("Products Info From SQLite DB");
+                Console.WriteLine("--------------------");
+
+                var sqLiteConnection =
+                    new SQLiteServConnection("Data Source=C:\\SQLite\\SexStoreProductInfo.sqlite;Version=3;");
+                var productsInfo = sqLiteConnection.GetProductsInformation();
+
+                foreach (var product in productsInfo)
+                {
+                    Console.WriteLine("Product Code: {0}, Name: {1}, Tax: {2}", product.ProductCode, product.ProductName, product.TaxPercent);
                 }
             }
         }
