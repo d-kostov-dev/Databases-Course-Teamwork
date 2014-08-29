@@ -3,17 +3,16 @@
     using System;
     using System.Data.Entity;
     using SQLServer.Data;
-    using SQLServer.Data.Migrations;
+    using MySQLServer.Data;
 
     public class EntryPoint
     {
         public static void Main()
         {
-            Database.SetInitializer
-                (new MigrateDatabaseToLatestVersion<SQLServerContext, Configuration>());
+            InitDatabasesMigrations();
 
             
-            var dbConnection = new SQLServerContextFactory().Create();
+            var dbConnection = new MySQLContextFactory().Create();
 
             using (dbConnection)
             {
@@ -24,6 +23,17 @@
                     Console.WriteLine(city.Name);
                 }
             }
+        }
+
+        private static void InitDatabasesMigrations()
+        {
+            // SQL Server
+            Database.SetInitializer
+                (new MigrateDatabaseToLatestVersion<SQLServerContext, SQLServer.Data.Migrations.Configuration>());
+
+            // MySQL
+            Database.SetInitializer
+                (new MigrateDatabaseToLatestVersion<MySQLContext, MySQLServer.Data.Migrations.Configuration>());
         }
     }
 }

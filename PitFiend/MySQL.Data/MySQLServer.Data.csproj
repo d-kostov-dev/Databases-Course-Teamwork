@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{541B0CD5-B396-427C-B0EF-2CEA7D116580}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{F8A67584-9004-406D-9DA1-42F5FDC93C10}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SexStore.Client</RootNamespace>
-    <AssemblyName>SexStore.Client</AssemblyName>
+    <RootNamespace>MySQL.Data</RootNamespace>
+    <AssemblyName>MySQL.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -55,7 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntryPoint.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="MySQLContext.cs" />
+    <Compile Include="MySQLContextFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,18 +66,6 @@
     <ProjectReference Include="..\SexStore.Models\SexStore.Models.csproj">
       <Project>{f07be725-3cef-44b6-bf90-3ac649e37daa}</Project>
       <Name>SexStore.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SexStore.MongoDB.Client\SexStore.MongoDB.Client.csproj">
-      <Project>{e37a3558-ddff-4436-897b-92be1412b915}</Project>
-      <Name>SexStore.MongoDB.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SexStore.MongoDB.Models\SexStore.MongoDB.Models.csproj">
-      <Project>{f9c23d88-9550-4508-970e-631ceef443a4}</Project>
-      <Name>SexStore.MongoDB.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SQLServer.Data\SQLServer.Data.csproj">
-      <Project>{4037b777-a3bb-4cc7-8bca-83f84b00fb4e}</Project>
-      <Name>SQLServer.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
