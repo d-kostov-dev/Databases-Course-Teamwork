@@ -3,7 +3,6 @@
     using System;
     using System.Data.Entity;
     using SQLServer.Data;
-    using MySQLServer.Data;
 
     public class EntryPoint
     {
@@ -11,8 +10,7 @@
         {
             InitDatabasesMigrations();
 
-            
-            var dbConnection = new MySQLContextFactory().Create();
+            var dbConnection = new SQLServerContextFactory().Create();
 
             using (dbConnection)
             {
@@ -30,10 +28,6 @@
             // SQL Server
             Database.SetInitializer
                 (new MigrateDatabaseToLatestVersion<SQLServerContext, SQLServer.Data.Migrations.Configuration>());
-
-            // MySQL
-            Database.SetInitializer
-                (new MigrateDatabaseToLatestVersion<MySQLContext, MySQLServer.Data.Migrations.Configuration>());
         }
     }
 }

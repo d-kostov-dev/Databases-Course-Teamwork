@@ -1,6 +1,7 @@
 ﻿namespace SexStore.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     public class Shop
     {
@@ -11,6 +12,7 @@
             this.products = new HashSet<Product>();
         }
 
+        [Key]
         public int ID { get; set; }
 
         public string Name { get; set; }
