@@ -154,7 +154,7 @@ namespace SQLServer.Data.Migrations
                 },
             };
 
-
+            // Sales
             var saleOne = new Sale()
             {
                 ID = 1,
@@ -182,11 +182,6 @@ namespace SQLServer.Data.Migrations
                 SaleDate = DateTime.Now,
                 Quantity = 1
             };
-
-            //context.Shops.AddOrUpdate(shopOne);
-            //context.Shops.AddOrUpdate(shopTwo);
-            //context.Shops.AddOrUpdate(shopThree);
-            //context.Shops.AddOrUpdate(shopFour);
 
             context.Sales.AddOrUpdate(saleOne);
             context.Sales.AddOrUpdate(saleTwo);

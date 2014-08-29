@@ -70,6 +70,10 @@
       <Project>{f9c23d88-9550-4508-970e-631ceef443a4}</Project>
       <Name>SexStore.MongoDB.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SQLiteServer.Data\SQLiteServer.Data.csproj">
+      <Project>{0a5df521-b5e8-48bc-b408-620a8fda7a2c}</Project>
+      <Name>SQLiteServer.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SQLServer.Data\SQLServer.Data.csproj">
       <Project>{4037b777-a3bb-4cc7-8bca-83f84b00fb4e}</Project>
       <Name>SQLServer.Data</Name>
