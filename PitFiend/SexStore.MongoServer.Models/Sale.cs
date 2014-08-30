@@ -1,4 +1,4 @@
-﻿namespace SexStore.MongoDb.Models
+﻿namespace SexStore.MongoServer.Models
 {
     using System;
     using MongoDB.Bson;

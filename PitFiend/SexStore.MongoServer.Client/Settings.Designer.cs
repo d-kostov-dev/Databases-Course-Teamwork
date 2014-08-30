@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SexStore.MongoDb.Client {
+namespace SexStore.MongoServer.Client {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

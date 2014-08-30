@@ -1,10 +1,10 @@
-﻿namespace SexStore.MongoDb.Data.Migrations
+﻿namespace SexStore.MongoServer.Data.Migrations
 {
     using System;
     using System.Collections.Generic;
-    using MongoDb.Models;
     using MongoDB.Bson;
     using MongoDB.Driver;
+    using MongoServer.Models;
 
     public sealed class Seed
     {

@@ -7,8 +7,8 @@
     <ProjectGuid>{E37A3558-DDFF-4436-897B-92BE1412B915}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SexStore.MongoDb.Client</RootNamespace>
-    <AssemblyName>SexStore.MongoDb.Client</AssemblyName>
+    <RootNamespace>SexStore.MongoServer.Client</RootNamespace>
+    <AssemblyName>SexStore.MongoServer.Client</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -64,13 +64,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SexStore.MongoDB.Data\SexStore.MongoDb.Data.csproj">
+    <ProjectReference Include="..\SexStore.MongoServer.Data\SexStore.MongoServer.Data.csproj">
       <Project>{75353bbe-6659-476d-a775-9fc885117987}</Project>
-      <Name>SexStore.MongoDb.Data</Name>
+      <Name>SexStore.MongoServer.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SexStore.MongoDB.Models\SexStore.MongoDb.Models.csproj">
+    <ProjectReference Include="..\SexStore.MongoServer.Models\SexStore.MongoServer.Models.csproj">
       <Project>{f9c23d88-9550-4508-970e-631ceef443a4}</Project>
-      <Name>SexStore.MongoDb.Models</Name>
+      <Name>SexStore.MongoServer.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
