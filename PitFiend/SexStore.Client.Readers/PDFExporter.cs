@@ -30,7 +30,7 @@
 
             strBuilder.Append("<table border='1'>");
             strBuilder.Append("<tr>");
-            strBuilder.Append("<th style=\"font-size:16px; text-align:center;\" colspan='5'>Available products</th>");
+            strBuilder.Append("<th style=\"font-size:16px; text-align:center;\" colspan='4'>Available products</th>");
             strBuilder.Append("</tr>");
             strBuilder.Append("<tr>");
             strBuilder.Append("<td>Product Name</td>");
