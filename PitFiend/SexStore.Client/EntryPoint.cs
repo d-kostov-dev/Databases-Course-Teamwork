@@ -75,11 +75,11 @@
                 }
             }
 
-            var mySQLConnection = new MySQLContext();
+            var mySQLConnection = new MySQLContext("MySQLConnStrDKostovHome");
 
             using (mySQLConnection)
             {
-                var newReport = new sexStoreReports() { Id = 1, product_code = 1001, product_name = "Miss Dulboko Gurlo" };
+                var newReport = new sexStoreReports() { Id = 3, product_code = 1001, product_name = "Miss Dulboko Gurlo" };
                 mySQLConnection.Add(newReport);
                 mySQLConnection.SaveChanges();
             }
