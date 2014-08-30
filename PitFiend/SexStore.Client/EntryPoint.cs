@@ -7,6 +7,8 @@
     using OpenAccessRuntime;
     using MySQLServer;
 
+    using SexStore.Client.Readers;
+
     public class EntryPoint
     {
         private static SQLServerContext sqlServerConnection;
@@ -73,16 +75,20 @@
                 //{
                 //    Console.WriteLine("Product Code: {0}, Name: {1}, Tax: {2}", product.ProductCode, product.ProductName, product.TaxPercent);
                 //}
+
+                XMLExporter.ExportRemainingQuantitiesToXml(sqlServerConnection);
+                PDFExporter.ExportRemainingQuantitiesToPdf(sqlServerConnection);
+
             }
 
-            var mySQLConnection = new MySQLContext("MySQLConnStrGYaramov");
-
-            using (mySQLConnection)
-            {
-                var newReport = new sexStoreReports() { Id = 3, product_code = 1001, product_name = "Miss Dulboko Gurlo" };
-                mySQLConnection.Add(newReport);
-                mySQLConnection.SaveChanges();
-            }
+            //var mySQLConnection = new MySQLContext("MySQLConnStrGYaramov");
+            //
+            //using (mySQLConnection)
+            //{
+            //    var newReport = new sexStoreReports() { Id = 3, product_code = 1001, product_name = "Miss Dulboko Gurlo" };
+            //    mySQLConnection.Add(newReport);
+            //    mySQLConnection.SaveChanges();
+            //}
         }
 
 

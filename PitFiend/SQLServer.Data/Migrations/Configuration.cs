@@ -187,9 +187,19 @@ namespace SQLServer.Data.Migrations
                 Quantity = 1
             };
 
+            var saleFour = new Sale()
+            {
+                ID = 4,
+                Product = productThree,
+                Shop = shopFour,
+                SaleDate = DateTime.Now,
+                Quantity = 1
+            };
+
             context.Sales.AddOrUpdate(saleOne);
             context.Sales.AddOrUpdate(saleTwo);
             context.Sales.AddOrUpdate(saleThree);
+            context.Sales.AddOrUpdate(saleFour);
         }
     }
 }
