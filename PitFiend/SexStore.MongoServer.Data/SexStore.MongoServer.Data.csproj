@@ -46,12 +46,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Migrations\Seed.cs" />
+    <Compile Include="Transfers\SqlParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transfers\TransferEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SexStore.Models\SexStore.Models.csproj">
+      <Project>{f07be725-3cef-44b6-bf90-3ac649e37daa}</Project>
+      <Name>SexStore.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SexStore.MongoServer.Models\SexStore.MongoServer.Models.csproj">
       <Project>{f9c23d88-9550-4508-970e-631ceef443a4}</Project>
       <Name>SexStore.MongoDb.Models</Name>

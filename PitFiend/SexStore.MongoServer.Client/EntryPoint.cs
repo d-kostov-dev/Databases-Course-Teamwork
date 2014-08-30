@@ -12,9 +12,9 @@
     {
         public static void Main()
         {
-            MongoClient mongoClient = new MongoClient(SexStore.MongoServer.Client.Settings.Default.Connection);
+            MongoClient mongoClient = new MongoClient(Settings.Default.Connection);
             MongoServer mongoServer = mongoClient.GetServer();
-            MongoDatabase sexStore = mongoServer.GetDatabase(SexStore.MongoServer.Client.Settings.Default.Database);
+            MongoDatabase sexStore = mongoServer.GetDatabase(Settings.Default.Database);
 
             //// ...
 
