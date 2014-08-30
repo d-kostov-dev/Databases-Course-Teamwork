@@ -65,17 +65,17 @@
                 Console.WriteLine("Products Info From SQLite DB");
                 Console.WriteLine("--------------------");
 
-                var sqLiteConnection =
-                    new SQLiteServConnection("Data Source=C:\\SQLite\\SexStoreProductInfo.sqlite;Version=3;");
-                var productsInfo = sqLiteConnection.GetProductsInformation();
+                //var sqLiteConnection =
+                //    new SQLiteServConnection("Data Source=C:\\SQLite\\SexStoreProductInfo.sqlite;Version=3;");
+                //var productsInfo = sqLiteConnection.GetProductsInformation();
 
-                foreach (var product in productsInfo)
-                {
-                    Console.WriteLine("Product Code: {0}, Name: {1}, Tax: {2}", product.ProductCode, product.ProductName, product.TaxPercent);
-                }
+                //foreach (var product in productsInfo)
+                //{
+                //    Console.WriteLine("Product Code: {0}, Name: {1}, Tax: {2}", product.ProductCode, product.ProductName, product.TaxPercent);
+                //}
             }
 
-            var mySQLConnection = new MySQLContext("MySQLConnStrDKostovHome");
+            var mySQLConnection = new MySQLContext("MySQLConnStrGYaramov");
 
             using (mySQLConnection)
             {
