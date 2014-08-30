@@ -7,7 +7,7 @@
         public SQLServerContext Create()
         {
             // Check App.config and add your connection strings.
-            return new SQLServerContext("SQLServerSexStoreGYaramovLaptop");
+            return new SQLServerContext("SQLKrischoHome");
         }
     }
 }
