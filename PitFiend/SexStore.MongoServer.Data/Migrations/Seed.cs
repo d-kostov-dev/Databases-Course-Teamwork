@@ -32,11 +32,11 @@ namespace SexStore.MongoServer.Data.Migrations
             }
             catch (MongoException ex)
             {
-                Console.WriteLine("MongoException: {1}", ex.Message);
+                Console.WriteLine("MongoException: {0}", ex.Message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception: {1}", ex.Message);
+                Console.WriteLine("Exception: {0}", ex.Message);
             }
         }
 

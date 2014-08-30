@@ -6,6 +6,7 @@
     using MongoDB.Driver;
     using MongoDB.Driver.Builders;
     using MongoServer.Data.Migrations;
+    using MongoServer.Data.Transfers;
     using MongoServer.Models;
         
     public class EntryPoint
@@ -20,6 +21,9 @@
 
             Seed test = new Seed(sexStore);
             test.Initialize();
+
+            TransferEngine yolo = new TransferEngine(sexStore);
+            yolo.TransferData();
         }
     }
 }
