@@ -6,6 +6,7 @@
     using SQLiteServer.Data;
     using OpenAccessRuntime;
     using MySQLServer;
+    using System.Linq;
 
     using SexStore.Client.Readers;
 
@@ -67,28 +68,20 @@
                 Console.WriteLine("Products Info From SQLite DB");
                 Console.WriteLine("--------------------");
 
-                var sqLiteConnection =
-                    new SQLiteServConnection(@"Data Source=..\..\..\SQLiteServer.Data\SexStoreProductInfo.sqlite;Version=3;");
-                var productsInfo = sqLiteConnection.GetProductsInformation();
-
-                foreach (var product in productsInfo)
-                {
-                    Console.WriteLine("Product Code: {0}, Name: {1}, Tax: {2}", product.ProductCode, product.ProductName, product.TaxPercent);
-                }
-
+                XLSXExporter.ExportXlsxReport(new SQLiteServConnection(@"Data Source=..\..\..\SQLiteServer.Data\SexStoreProductInfo.sqlite;Version=3;"));
                 //XMLExporter.ExportRemainingQuantitiesToXml(sqlServerConnection);
                 //PDFExporter.ExportRemainingQuantitiesToPdf(sqlServerConnection);
 
             }
 
-            var mySQLConnection = new MySQLContext("MySQLConnStrGYaramov");
+            //var mySQLConnection = new MySQLContext("MySQLConnStrGYaramov");
             
-            using (mySQLConnection)
-            {
-                var newReport = new sexStoreReports() { Id = 3, product_code = 1001, product_name = "Miss Dulboko Gurlo" };
-                mySQLConnection.Add(newReport);
-                mySQLConnection.SaveChanges();
-            }
+            //using (mySQLConnection)
+            //{
+            //    var newReport = new sexStoreReports() { Id = 3, product_code = 1001, product_name = "Miss Dulboko Gurlo" };
+            //    mySQLConnection.Add(newReport);
+            //    mySQLConnection.SaveChanges();
+            //}
         }
 
 
