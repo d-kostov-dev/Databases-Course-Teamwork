@@ -1,10 +1,20 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-
-namespace SexStore.MongoDB.Models
+﻿namespace SexStore.MongoDb.Models
 {
+    using System.Collections.Generic;
+    using MongoDB.Bson;
+    using MongoDB.Bson.Serialization.Attributes;
+
     public class Shop
     {
+        [BsonConstructor]
+        public Shop(string name, string address, ObjectId cityId, ICollection<ObjectId> productIds)
+        {
+            this.Name = name;
+            this.Address = address;
+            this.CityId = cityId;
+            this.ProductIds = productIds;
+        }
+
         [BsonId]
         public ObjectId Id { get; set; }
 
@@ -16,14 +26,11 @@ namespace SexStore.MongoDB.Models
 
         [BsonRequired]
         public ObjectId CityId { get; set; }
+
         public City City { get; set; }
 
-        [BsonConstructor]
-        public Shop(string name, string address, ObjectId cityId)
-        {
-            this.Name = name;
-            this.Address = address;
-            this.CityId = cityId;
-        }
+        public ICollection<ObjectId> ProductIds { get; set; }
+
+        public ICollection<Product> Products { get; set; }
     }
 }

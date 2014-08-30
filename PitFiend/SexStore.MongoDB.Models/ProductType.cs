@@ -1,20 +1,20 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-
-namespace SexStore.MongoDB.Models
+﻿namespace SexStore.MongoDb.Models
 {
+    using MongoDB.Bson;
+    using MongoDB.Bson.Serialization.Attributes;
+
     public class ProductType
     {
-        [BsonId]
-        public ObjectId Id { get; set; }
-
-        [BsonRequired]
-        public string Name { get; set; }
-
         [BsonConstructor]
         public ProductType(string name)
         {
             this.Name = name;
         }
+
+        [BsonId]
+        public ObjectId Id { get; set; }
+
+        [BsonRequired]
+        public string Name { get; set; }
     }
 }

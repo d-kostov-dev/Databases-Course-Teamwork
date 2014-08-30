@@ -62,13 +62,13 @@
       <Project>{f07be725-3cef-44b6-bf90-3ac649e37daa}</Project>
       <Name>SexStore.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SexStore.MongoDB.Client\SexStore.MongoDB.Client.csproj">
+    <ProjectReference Include="..\SexStore.MongoDB.Client\SexStore.MongoDb.Client.csproj">
       <Project>{e37a3558-ddff-4436-897b-92be1412b915}</Project>
-      <Name>SexStore.MongoDB.Client</Name>
+      <Name>SexStore.MongoDb.Client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SexStore.MongoDB.Models\SexStore.MongoDB.Models.csproj">
+    <ProjectReference Include="..\SexStore.MongoDB.Models\SexStore.MongoDb.Models.csproj">
       <Project>{f9c23d88-9550-4508-970e-631ceef443a4}</Project>
-      <Name>SexStore.MongoDB.Models</Name>
+      <Name>SexStore.MongoDb.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\SQLiteServer.Data\SQLiteServer.Data.csproj">
       <Project>{0a5df521-b5e8-48bc-b408-620a8fda7a2c}</Project>

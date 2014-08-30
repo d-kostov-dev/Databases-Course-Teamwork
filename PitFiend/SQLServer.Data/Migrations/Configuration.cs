@@ -26,7 +26,7 @@ namespace SQLServer.Data.Migrations
             var varnaCity = new City() { ID = 3, Name = "Varna" };
             var bourgasCity = new City() { ID = 4, Name = "Bourgas" };
 
-            // Products
+            // Categories
             var maleProductsCategory = new Category() { ID = 1, Name = "Male Products" };
             var femaleProductsCategory = new Category() { ID = 2, Name = "Female Products" };
             var unisexCategory = new Category() { ID = 3, Name = "Unisex" };

@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E37A3558-DDFF-4436-897B-92BE1412B915}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{75353BBE-6659-476D-A775-9FC885117987}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SexStore.MongoDb.Client</RootNamespace>
-    <AssemblyName>SexStore.MongoDb.Client</AssemblyName>
+    <RootNamespace>SexStore.MongoDb.Data</RootNamespace>
+    <AssemblyName>SexStore.MongoDb.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -47,27 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntryPoint.cs" />
+    <Compile Include="Migrations\Seed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SexStore.MongoDB.Data\SexStore.MongoDb.Data.csproj">
-      <Project>{75353bbe-6659-476d-a775-9fc885117987}</Project>
-      <Name>SexStore.MongoDb.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SexStore.MongoDB.Models\SexStore.MongoDb.Models.csproj">
       <Project>{f9c23d88-9550-4508-970e-631ceef443a4}</Project>
       <Name>SexStore.MongoDb.Models</Name>

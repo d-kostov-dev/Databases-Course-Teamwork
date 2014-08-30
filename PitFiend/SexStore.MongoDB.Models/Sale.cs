@@ -1,9 +1,8 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-
-namespace SexStore.MongoDB.Models
+﻿namespace SexStore.MongoDb.Models
 {
     using System;
+    using MongoDB.Bson;
+    using MongoDB.Bson.Serialization.Attributes;
 
     public class Sale
     {
@@ -18,10 +17,12 @@ namespace SexStore.MongoDB.Models
 
         [BsonRequired]
         public ObjectId ProductId { get; set; }
+
         public Product Product { get; set; }
 
         [BsonRequired]
         public ObjectId ShopId { get; set; }
+
         public Shop Shop { get; set; }
     }
 }

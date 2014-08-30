@@ -1,19 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SexStore.Models", "SexStore.Models\SexStore.Models.csproj", "{F07BE725-3CEF-44B6-BF90-3AC649E37DAA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLServer.Data", "SQLServer.Data\SQLServer.Data.csproj", "{4037B777-A3BB-4CC7-8BCA-83F84B00FB4E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SexStore.Client", "SexStore.Client\SexStore.Client.csproj", "{541B0CD5-B396-427C-B0EF-2CEA7D116580}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SexStore.MongoDB.Models", "SexStore.MongoDB.Models\SexStore.MongoDB.Models.csproj", "{F9C23D88-9550-4508-970E-631CEEF443A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SexStore.MongoDb.Models", "SexStore.MongoDB.Models\SexStore.MongoDb.Models.csproj", "{F9C23D88-9550-4508-970E-631CEEF443A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SexStore.MongoDB.Client", "SexStore.MongoDB.Client\SexStore.MongoDB.Client.csproj", "{E37A3558-DDFF-4436-897B-92BE1412B915}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SexStore.MongoDb.Client", "SexStore.MongoDB.Client\SexStore.MongoDb.Client.csproj", "{E37A3558-DDFF-4436-897B-92BE1412B915}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLiteServer.Data", "SQLiteServer.Data\SQLiteServer.Data.csproj", "{0A5DF521-B5E8-48BC-B408-620A8FDA7A2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SexStore.MongoDb.Data", "SexStore.MongoDB.Data\SexStore.MongoDb.Data.csproj", "{75353BBE-6659-476D-A775-9FC885117987}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +45,10 @@ Global
 		{0A5DF521-B5E8-48BC-B408-620A8FDA7A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A5DF521-B5E8-48BC-B408-620A8FDA7A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A5DF521-B5E8-48BC-B408-620A8FDA7A2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75353BBE-6659-476D-A775-9FC885117987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75353BBE-6659-476D-A775-9FC885117987}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75353BBE-6659-476D-A775-9FC885117987}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75353BBE-6659-476D-A775-9FC885117987}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
