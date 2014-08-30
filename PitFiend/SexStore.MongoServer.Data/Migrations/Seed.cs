@@ -32,11 +32,11 @@
             }
             catch (MongoException ex)
             {
-                Console.WriteLine("{0}: {1}", "MongoException", ex.Message);
+                Console.WriteLine("MongoException: {1}", ex.Message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("{0}: {1}", "Exception", ex.Message);
+                Console.WriteLine("Exception: {1}", ex.Message);
             }
         }
 
