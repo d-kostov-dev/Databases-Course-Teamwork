@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DomainModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="2.0.0.0" name="MySQLContext" namespace="MySQLServer" showPropertiesCompartment="true" xmlns="http://www.telerik.com/ORM">
+  <orm:orm name="MySQLContext" backend="mysql" xmlns:orm="http://tempuri.org/ORM">
+    <orm:namespace name="MySQLServer" default="true">
+      <orm:class name="sexStoreReports" use-default-mapping="true" uniqueId="b9d48787-8a52-4666-b27a-59c0a65abe4d">
+        <orm:identity>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:field name="_id" property="Id" uniqueId="5e1fd056-dc77-45ea-9b36-5162683d0e8f" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_product_code" property="product_code" uniqueId="08e6102e-27ab-4c75-bdc0-fc2e8c6ea0d2" type="System.Int32">
+          <orm:column name="product_code" sql-type="integer" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_product_name" property="product_name" uniqueId="ebd435cc-460d-46ce-9213-ea8c142df61b" type="System.String">
+          <orm:column name="product_name" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="Varchar" />
+        </orm:field>
+      </orm:class>
+    </orm:namespace>
+    <orm:schema schema="" />
+    <orm:relational-naming-settings>
+      <orm:source-strategy>Property</orm:source-strategy>
+      <orm:remove-camel-case>False</orm:remove-camel-case>
+    </orm:relational-naming-settings>
+  </orm:orm>
+  <ModelSettings xmlns="">
+    <AppConfigConnectionPropertyName>MySQLConnStrDKostov</AppConfigConnectionPropertyName>
+    <AppConfigConnectionString>server=localhost;database=sexStore;uid=root;pooling=true</AppConfigConnectionString>
+    <NamingSettings>
+      <ClassRules>
+        <CaseMode>PascalCase</CaseMode>
+        <PluralizationMode>Singularize</PluralizationMode>
+      </ClassRules>
+      <FieldRules>
+        <AddPrefix>_</AddPrefix>
+        <CaseMode>CamelCase</CaseMode>
+      </FieldRules>
+      <PropertyRules>
+        <CaseMode>PascalCase</CaseMode>
+      </PropertyRules>
+      <NavigationPropertyRules />
+    </NamingSettings>
+    <CodeGenerationSettings>
+      <MappingDefinitionType>Xml</MappingDefinitionType>
+    </CodeGenerationSettings>
+    <SchemaUpdateSettings>
+      <ExecuteScript>true</ExecuteScript>
+      <DeploymentProject>MySQLServer</DeploymentProject>
+      <UpdateDatabaseOperation>Migrate</UpdateDatabaseOperation>
+      <ShowAllTables>true</ShowAllTables>
+    </SchemaUpdateSettings>
+    <BackendConfigurationSettings>
+      <BackendConfiguration>
+        <Backend>MySql</Backend>
+        <ProviderName>MySql.Data.MySqlClient</ProviderName>
+      </BackendConfiguration>
+    </BackendConfigurationSettings>
+  </ModelSettings>
+  <Types>
+    <DomainClass Id="b9d48787-8a52-4666-b27a-59c0a65abe4d" name="sexStoreReports" namespace="MySQLServer" showPropertiesCompartment="true" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="5e1fd056-dc77-45ea-9b36-5162683d0e8f" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
+      <Property Id="08e6102e-27ab-4c75-bdc0-fc2e8c6ea0d2" name="product_code" type="Int32" label="product_code : Int32" fieldName="_product_code" />
+      <Property Id="ebd435cc-460d-46ce-9213-ea8c142df61b" name="product_name" label="product_name : String" fieldName="_product_name" />
+    </DomainClass>
+  </Types>
+  <domainContext>
+    <domainModelHasDomainContext Id="b111b997-74a9-486f-ad47-03dc8459d641">
+      <domainContainer name="MySQLContext" namespace="MySQLServer" showPropertiesCompartment="true">
+        <entitySetProperty name="sexStoreReports" namespace="MySQLServer" type="sexStoreReports" label="sexStoreReports : IQueryable&lt;MySQLServer.sexStoreReports&gt;" />
+      </domainContainer>
+    </domainModelHasDomainContext>
+  </domainContext>
+</DomainModel>

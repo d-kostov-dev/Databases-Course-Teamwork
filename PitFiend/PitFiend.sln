@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SexStore.Models", "SexStore.Models\SexStore.Models.csproj", "{F07BE725-3CEF-44B6-BF90-3AC649E37DAA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLServer.Data", "SQLServer.Data\SQLServer.Data.csproj", "{4037B777-A3BB-4CC7-8BCA-83F84B00FB4E}"
@@ -14,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SexStore.MongoServer.Data", "SexStore.MongoServer.Data\SexStore.MongoServer.Data.csproj", "{75353BBE-6659-476D-A775-9FC885117987}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SexStore.MongoServer.Models", "SexStore.MongoServer.Models\SexStore.MongoServer.Models.csproj", "{F9C23D88-9550-4508-970E-631CEEF443A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySQLServer", "MySQLServer\MySQLServer.csproj", "{C50145E6-A244-4F1F-B41F-90D1925B4A00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,10 @@ Global
 		{F9C23D88-9550-4508-970E-631CEEF443A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9C23D88-9550-4508-970E-631CEEF443A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9C23D88-9550-4508-970E-631CEEF443A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C50145E6-A244-4F1F-B41F-90D1925B4A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C50145E6-A244-4F1F-B41F-90D1925B4A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C50145E6-A244-4F1F-B41F-90D1925B4A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C50145E6-A244-4F1F-B41F-90D1925B4A00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

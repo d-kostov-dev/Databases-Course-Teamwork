@@ -6,7 +6,7 @@
     using MongoDB.Driver;
     using MongoServer.Models;
 
-    public sealed class Seed
+    public class Seed
     {
         public Seed(MongoDatabase database)
         {

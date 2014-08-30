@@ -4,6 +4,8 @@
     using System.Data.Entity;
     using SQLServer.Data;
     using SQLiteServer.Data;
+    using OpenAccessRuntime;
+    using MySQLServer;
 
     public class EntryPoint
     {
@@ -72,7 +74,17 @@
                     Console.WriteLine("Product Code: {0}, Name: {1}, Tax: {2}", product.ProductCode, product.ProductName, product.TaxPercent);
                 }
             }
+
+            var mySQLConnection = new MySQLContext();
+
+            using (mySQLConnection)
+            {
+                var newReport = new sexStoreReports() { Id = 1, product_code = 1001, product_name = "Miss Dulboko Gurlo" };
+                mySQLConnection.Add(newReport);
+                mySQLConnection.SaveChanges();
+            }
         }
+
 
         private static void InitDatabasesMigrations()
         {
