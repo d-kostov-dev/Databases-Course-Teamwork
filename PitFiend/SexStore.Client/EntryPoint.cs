@@ -1,19 +1,19 @@
 ﻿namespace SexStore.Client
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
-    using SQLServer.Data;
-    using SQLiteServer.Data;
-    using OpenAccessRuntime;
-    using MySQLServer;
     using System.Linq;
 
+    using MySQLServer;
+    using OpenAccessRuntime;
     using SexStore.Client.Readers;
     using SexStore.Client.Readers.Helpers;
     using SexStore.Client.Readers.Reporters;
-    using System.Collections.Generic;
     using SexStore.Models;
-
+    using SQLiteServer.Data;
+    using SQLServer.Data;
+    
     public class EntryPoint
     {
         private static SQLServerContext sqlServerConnection;
@@ -65,7 +65,6 @@
 
                 //var sales = sqlServerConnection.Sales.Where(x => x.Product.ProductCode == 1001);
                 
-
                 //foreach (var sale in sales)
                 //{
                 //    Console.WriteLine("Sale product: {0}, Date:{1}, Quantity: {2}", sale.Product.Name, sale.SaleDate, sale.Quantity);
@@ -87,14 +86,12 @@
 
             //var mySQLConnection = new MySQLContext("MySQLConnStrGYaramov");
             //MySQLReporter.ExportReportToMySQLDb(mySQLConnection, reports);
-            
         }
 
         private static void InitDatabasesMigrations()
         {
             // SQL Server
-            Database.SetInitializer
-                (new MigrateDatabaseToLatestVersion<SQLServerContext, SQLServer.Data.Migrations.Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<SQLServerContext, SQLServer.Data.Migrations.Configuration>());
         }
     }
 }

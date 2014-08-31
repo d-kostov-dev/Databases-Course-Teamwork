@@ -18,7 +18,7 @@
 
             this.sqLiteConnection.Open();
 
-            using (sqLiteConnection)
+            using (this.sqLiteConnection)
             {
                 string sqlCommand = "SELECT * FROM productsInfo";
                 var commandToExecute = new SQLiteCommand(sqlCommand, this.sqLiteConnection);

@@ -13,6 +13,5 @@
         public int TotalQuantitySold { get; set; }
 
         public double TotalIncomes { get; set; }
-
     }
 }

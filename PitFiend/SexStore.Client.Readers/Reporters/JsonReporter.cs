@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.IO;
 
-    using SexStore.Client.Readers.Helpers;
     using Newtonsoft.Json;    
+    using SexStore.Client.Readers.Helpers;
 
     public static class JsonReporter
     {

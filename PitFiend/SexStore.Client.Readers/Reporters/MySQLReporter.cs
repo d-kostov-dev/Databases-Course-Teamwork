@@ -1,15 +1,11 @@
-﻿
-using System;
-
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SexStore.Client.Readers.Reporters
+﻿namespace SexStore.Client.Readers.Reporters
 {
+    using System;
     using System.Collections.Generic;
-    using SexStore.Client.Readers.Helpers;
+    using System.Linq;
+
     using MySQLServer;
+    using SexStore.Client.Readers.Helpers;    
 
     public static class MySQLReporter
     {
@@ -29,7 +25,6 @@ namespace SexStore.Client.Readers.Reporters
                         TotalIncomes = report.TotalIncomes
                     };
                     db.Add(newReport);
-
                 }
 
                 db.SaveChanges();

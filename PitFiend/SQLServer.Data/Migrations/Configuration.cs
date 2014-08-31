@@ -1,11 +1,12 @@
 namespace SQLServer.Data.Migrations
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    
     using SexStore.Models;
-    using System.Collections.Generic;
 
     public sealed class Configuration : DbMigrationsConfiguration<SQLServerContext>
     {

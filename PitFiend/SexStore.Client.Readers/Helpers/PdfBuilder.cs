@@ -19,7 +19,6 @@
         /// </summary>
         public class HtmlToPdfBuilder
         {
-
             #region Constants
 
             private const string STYLE_DEFAULT_TYPE = "style";
@@ -132,7 +131,6 @@
             /// </summary>
             public void ImportStylesheet(string path)
             {
-
                 //load the file
                 string content = File.ReadAllText(path);
 
@@ -143,9 +141,7 @@
                     string style = match.Groups[HtmlToPdfBuilder.REGEX_GROUP_STYLE].Value;
                     this.AddStyle(selector, style);
                 }
-
             }
-
 
             #endregion
 
@@ -183,7 +179,6 @@
             /// </summary>
             public byte[] RenderPdf()
             {
-
                 //Document is inbuilt class, available in iTextSharp
                 MemoryStream file = new MemoryStream();
                 Document document = new Document(this.PageSize);
@@ -238,15 +233,12 @@
                 //return the rendered PDF
                 document.Close();
                 return file.ToArray();
-
             }
 
             #endregion
-
         }
 
         #endregion
-
         #region HtmlPdfPage Class
 
         /// <summary>
@@ -254,7 +246,6 @@
         /// </summary>
         public class HtmlPdfPage
         {
-
             #region Constructors
 
             /// <summary>

@@ -1,5 +1,4 @@
-﻿using System;
-namespace SQLiteServer.Data
+﻿namespace SQLiteServer.Data
 {
     public class ProductInfo
     {
