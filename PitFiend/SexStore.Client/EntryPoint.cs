@@ -94,7 +94,6 @@
             //}
         }
 
-
         private static void InitDatabasesMigrations()
         {
             // SQL Server
