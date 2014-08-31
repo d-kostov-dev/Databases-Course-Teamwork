@@ -65,6 +65,7 @@
     <Compile Include="XLSXExporter.cs" />
     <Compile Include="XMLExporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XMLImporter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MySQLServer\MySQLServer.csproj">
