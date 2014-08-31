@@ -11,6 +11,7 @@
     using SexStore.Client.Readers;
     using SexStore.Client.Readers.Reporters;
     using System.Collections.Generic;
+    using SexStore.Models;
 
     public class EntryPoint
     {
@@ -75,42 +76,12 @@
                 //XMLExporter.ExportRemainingQuantitiesToXml(sqlServerConnection);
                 //PDFExporter.ExportRemainingQuantitiesToPdf(sqlServerConnection);
 
+                //var sale = sqlServerConnection.Sales.Find(6);
+                //sale.Quantity = 2;
 
-                //var sales = sqlServerConnection.Shops.SelectMany(s => s.Sales).AsQueryable();
-                //var sellPro = sales.Select(s => s.Product);
-                //Console.WriteLine(sales);
-                //Console.WriteLine();
-                //Console.WriteLine(sellPro);
+                //sqlServerConnection.SaveChanges();
 
-                //foreach (var prod in sellPro)
-                //{
-                //    Console.WriteLine(prod.Name);
-                //}
-                //sales.
-
-
-                var allProducts = sqlServerConnection.Products;
-                var productReports = new List<ProductReport>();
-
-                foreach (var p in allProducts)
-                {
-                    var prodRep = new ProductReport();
-                    prodRep.Id = p.ID;
-                    prodRep.Name = p.Name;
-                    prodRep.TotalQuantitySold = sqlServerConnection.Sales
-                        .Where(s => s.Product.ID == p.ID)
-                            .Sum(s => s.Quantity);
-                    prodRep.TotalIncomes = (decimal)prodRep.TotalQuantitySold * (decimal)p.Price;
-                    productReports.Add(prodRep);
-                }
-
-                foreach (var rep in productReports)
-                {
-                    Console.WriteLine(rep.Id);
-                    Console.WriteLine(rep.Name);
-                    Console.WriteLine(rep.TotalQuantitySold);
-                    Console.WriteLine(rep.TotalIncomes);
-                }
+                ProductReport.ExportToJson(sqlServerConnection);
             }
 
             //var mySQLConnection = new MySQLContext("MySQLConnStrGYaramov");

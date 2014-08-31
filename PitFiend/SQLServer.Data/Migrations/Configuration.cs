@@ -177,7 +177,6 @@ namespace SQLServer.Data.Migrations
                 Quantity = 2
             };
 
-
             var saleThree = new Sale()
             {
                 ID = 3,
