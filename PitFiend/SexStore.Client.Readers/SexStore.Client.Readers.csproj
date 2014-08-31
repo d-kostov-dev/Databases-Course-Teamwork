@@ -62,8 +62,10 @@
     <Compile Include="Helpers\DbDataHelpType.cs" />
     <Compile Include="Helpers\Helpers.cs" />
     <Compile Include="Helpers\PdfBuilder.cs" />
+    <Compile Include="Helpers\ProductReportsCreator.cs" />
     <Compile Include="PDFExporter.cs" />
-    <Compile Include="Reporters\ProductReport.cs" />
+    <Compile Include="Helpers\ProductReport.cs" />
+    <Compile Include="Reporters\MySQLReporter.cs" />
     <Compile Include="XLSXExporter.cs" />
     <Compile Include="XMLExporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +96,7 @@
   <ItemGroup>
     <Content Include="itextsharp.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -9,6 +9,7 @@
     using System.Linq;
 
     using SexStore.Client.Readers;
+    using SexStore.Client.Readers.Helpers;
     using SexStore.Client.Readers.Reporters;
     using System.Collections.Generic;
     using SexStore.Models;
@@ -77,40 +78,14 @@
                 //XLSXExporter.ExportXlsxReport(new SQLiteServConnection(@"Data Source=..\..\..\SQLiteServer.Data\SexStoreProductInfo.sqlite;Version=3;"));
                 //XMLExporter.ExportRemainingQuantitiesToXml(sqlServerConnection);
                 //PDFExporter.ExportRemainingQuantitiesToPdf(sqlServerConnection);
-
-                //var sale = sqlServerConnection.Sales.Find(6);
-                //sale.Quantity = 2;
-
-                //sqlServerConnection.SaveChanges();
-
-                //ProductReport.ExportToJson(sqlServerConnection);
-
-                reports = ProductReport.CreateReportForEveryProduct(sqlServerConnection);
             }
 
-
+            sqlServerConnection = new SQLServerContextFactory().Create();
+            reports = ProductReportsCreator.CreateReportForEveryProduct(sqlServerConnection);
 
             var mySQLConnection = new MySQLContext("MySQLConnStrGYaramov");
+            MySQLReporter.ExportReportToMySQLDb(mySQLConnection, reports);
             
-            using (mySQLConnection)
-            {
-                foreach (var report in reports)
-                {
-                    var newReport = new sexStoreReports() 
-                    { 
-                        Id = report.Id, 
-                        ProductCode = report.ProductCode, 
-                        Name = report.Name,
-                        SoldInShops = string.Join(" ", report.ShopNames),
-                        TotalQuantitySold = report.TotalQuantitySold,
-                        TotalIncomes = report.TotalIncomes
-                    };
-                    mySQLConnection.Add(newReport);
-                    
-                }
-
-                mySQLConnection.SaveChanges();
-            }
         }
 
         private static void InitDatabasesMigrations()
