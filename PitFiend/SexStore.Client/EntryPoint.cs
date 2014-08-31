@@ -57,7 +57,7 @@
                 Console.WriteLine("Sales");
                 Console.WriteLine("--------------------");
 
-                var sales = sqlServerConnection.Sales;
+                var sales = sqlServerConnection.Sales.Where(x => x.Product.ProductCode == 1001);
 
                 foreach (var sale in sales)
                 {
@@ -68,7 +68,7 @@
                 Console.WriteLine("Products Info From SQLite DB");
                 Console.WriteLine("--------------------");
 
-                XLSXExporter.ExportXlsxReport(new SQLiteServConnection(@"Data Source=..\..\..\SQLiteServer.Data\SexStoreProductInfo.sqlite;Version=3;"));
+                //XLSXExporter.ExportXlsxReport(new SQLiteServConnection(@"Data Source=..\..\..\SQLiteServer.Data\SexStoreProductInfo.sqlite;Version=3;"));
                 //XMLExporter.ExportRemainingQuantitiesToXml(sqlServerConnection);
                 //PDFExporter.ExportRemainingQuantitiesToPdf(sqlServerConnection);
 

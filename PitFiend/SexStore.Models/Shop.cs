@@ -6,10 +6,12 @@
     public class Shop
     {
         private ICollection<Product> products;
+        private ICollection<Sale> sales;
 
         public Shop()
         {
             this.products = new HashSet<Product>();
+            this.sales = new HashSet<Sale>();
         }
 
         [Key]
@@ -21,6 +23,8 @@
 
         public virtual ICollection<Product> Products { get; set; }
 
-        public City City { get; set; }
+        public virtual ICollection<Sale> Sales { get; set; }
+
+        public virtual City City { get; set; }
     }
 }
