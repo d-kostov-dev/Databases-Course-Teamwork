@@ -62,6 +62,7 @@
     <Compile Include="Helpers\Helpers.cs" />
     <Compile Include="Helpers\PdfBuilder.cs" />
     <Compile Include="PDFExporter.cs" />
+    <Compile Include="Reporters\ProductReport.cs" />
     <Compile Include="XLSXExporter.cs" />
     <Compile Include="XMLExporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
