@@ -83,8 +83,10 @@
             sqlServerConnection = new SQLServerContextFactory().Create();
             reports = ProductReportsCreator.CreateReportForEveryProduct(sqlServerConnection);
 
-            var mySQLConnection = new MySQLContext("MySQLConnStrGYaramov");
-            MySQLReporter.ExportReportToMySQLDb(mySQLConnection, reports);
+            JsonReporter.ExportReportToJsonFiles(reports);
+
+            //var mySQLConnection = new MySQLContext("MySQLConnStrGYaramov");
+            //MySQLReporter.ExportReportToMySQLDb(mySQLConnection, reports);
             
         }
 
