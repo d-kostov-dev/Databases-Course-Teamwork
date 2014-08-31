@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SQLServer.Data;
-
-namespace SexStore.Client.Readers.Reporters
+﻿namespace SexStore.Client.Readers.Reporters
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using SQLServer.Data;
+    using SexStore.Client.Readers.Helpers;
+
     public class ProductReport
     {
         private List<string> shopNames;
@@ -27,42 +27,12 @@ namespace SexStore.Client.Readers.Reporters
         public int TotalQuantitySold { get; set; }
 
         public double TotalIncomes { get; set; }
-
+       
         public static void ExportToJson(SQLServerContext db)
         {
-            var productsCount = db.Products.Count();
-            var productsAndTheirSales = db.Products.Join(
-                    db.Sales,
-                    p => p.ID,
-                    s => s.Product.ID,
-                    (p, s) => new
-                    {
-                        Id = p.ID,
-                        Name = p.Name,
-                        TotalQuantitySold = s.Quantity,
-                        TotalIncomes = s.Quantity * p.Price,
-                        ShopName = s.Shop.Name
-                    }).ToList();
+            var productsData = GetProductsDataFromDb(db);
 
-            var reports = new List<ProductReport>(productsCount);
-
-            for (int i = 1; i <= productsCount; i++)
-            {
-                var currentProduct = new ProductReport() { Id = i, Name = null, TotalQuantitySold = 0, TotalIncomes = 0};
-                foreach (var product in productsAndTheirSales)
-                {
-                    if (product.Id == currentProduct.Id)
-                    {
-                        currentProduct.Name = product.Name;
-                        currentProduct.ShopNames.Add(product.ShopName);
-                        currentProduct.TotalQuantitySold += product.TotalQuantitySold;
-                        currentProduct.TotalIncomes += product.TotalIncomes;
-                    }
-                }
-
-                reports.Add(currentProduct);
-            }
-
+            var reports = CreateReportForEveryProduct(db, productsData);
             
             foreach (var rep in reports)
             {                
@@ -78,5 +48,54 @@ namespace SexStore.Client.Readers.Reporters
             }
         }
 
+        private static List<ProductReport> CreateReportForEveryProduct(SQLServerContext db, IList<DbDataHelpType> productSalesData)
+        {
+            var productsCount = GetProductsCount(db);
+            var reports = new List<ProductReport>(productsCount);
+
+            for (int i = 1; i <= productsCount; i++)
+            {
+                var currentProduct = new ProductReport() { Id = i, Name = null, TotalQuantitySold = 0, TotalIncomes = 0 };
+                foreach (var product in productSalesData)
+                {
+                    if (product.Id == currentProduct.Id)
+                    {
+                        currentProduct.Name = product.Name;
+                        currentProduct.ShopNames.Add(product.ShopName);
+                        currentProduct.TotalQuantitySold += product.TotalQuantitySold;
+                        currentProduct.TotalIncomes += product.TotalIncomes;
+                    }
+                }
+
+                reports.Add(currentProduct);
+            }
+
+            return reports;
+        }
+
+        private static List<DbDataHelpType> GetProductsDataFromDb(SQLServerContext db)
+        {            
+            var productsAndTheirSales = db.Products.Join(
+                    db.Sales,
+                    p => p.ID,
+                    s => s.Product.ID,
+                    (p, s) => new DbDataHelpType()
+                    {
+                        Id = p.ID,
+                        Name = p.Name,
+                        TotalQuantitySold = s.Quantity,
+                        TotalIncomes = s.Quantity * p.Price,
+                        ShopName = s.Shop.Name
+                    }).ToList();
+
+            return productsAndTheirSales;
+        }
+
+        private static int GetProductsCount(SQLServerContext db)
+        {
+            var productsCount = db.Products.Count();
+
+            return productsCount;
+        }
     }
 }
