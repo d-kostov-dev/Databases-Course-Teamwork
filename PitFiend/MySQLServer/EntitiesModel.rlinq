@@ -9,11 +9,20 @@
         <orm:field name="_id" property="Id" uniqueId="5e1fd056-dc77-45ea-9b36-5162683d0e8f" type="System.Int32">
           <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         </orm:field>
-        <orm:field name="_product_code" property="product_code" uniqueId="08e6102e-27ab-4c75-bdc0-fc2e8c6ea0d2" type="System.Int32">
-          <orm:column name="product_code" sql-type="integer" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        <orm:field name="_productCode" property="ProductCode" uniqueId="08e6102e-27ab-4c75-bdc0-fc2e8c6ea0d2" type="System.Int32">
+          <orm:column name="ProductCode" sql-type="integer" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         </orm:field>
-        <orm:field name="_product_name" property="product_name" uniqueId="ebd435cc-460d-46ce-9213-ea8c142df61b" type="System.String">
-          <orm:column name="product_name" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="Varchar" />
+        <orm:field name="_name" property="Name" uniqueId="ebd435cc-460d-46ce-9213-ea8c142df61b" type="System.String">
+          <orm:column name="nme" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="Varchar" />
+        </orm:field>
+        <orm:field name="_soldInShops" property="SoldInShops" uniqueId="d5b34f7f-b5c7-4de9-b199-9d9b534eeed7" type="System.String">
+          <orm:column name="SoldInShops" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="Varchar" />
+        </orm:field>
+        <orm:field name="_totalQuantitySold" property="TotalQuantitySold" uniqueId="09072e51-a46d-4e33-9ceb-900eb62ca7b2" type="System.Int32">
+          <orm:column name="TotalQuantitySold" sql-type="integer" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_totalIncomes" property="TotalIncomes" uniqueId="333e162f-fbca-4e61-984c-caa757f37971" type="System.Double">
+          <orm:column name="TotalIncomes" sql-type="double" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.DoubleConverter" ado-type="Double" />
         </orm:field>
       </orm:class>
     </orm:namespace>
@@ -59,8 +68,11 @@
   <Types>
     <DomainClass Id="b9d48787-8a52-4666-b27a-59c0a65abe4d" name="sexStoreReports" namespace="MySQLServer" showPropertiesCompartment="true" showNavigationCompartment="true" showImplementationCompartment="true">
       <Property Id="5e1fd056-dc77-45ea-9b36-5162683d0e8f" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
-      <Property Id="08e6102e-27ab-4c75-bdc0-fc2e8c6ea0d2" name="product_code" type="Int32" label="product_code : Int32" fieldName="_product_code" />
-      <Property Id="ebd435cc-460d-46ce-9213-ea8c142df61b" name="product_name" label="product_name : String" fieldName="_product_name" />
+      <Property Id="08e6102e-27ab-4c75-bdc0-fc2e8c6ea0d2" name="ProductCode" type="Int32" label="ProductCode : Int32" fieldName="_productCode" />
+      <Property Id="ebd435cc-460d-46ce-9213-ea8c142df61b" name="Name" label="Name : String" fieldName="_name" />
+      <Property Id="d5b34f7f-b5c7-4de9-b199-9d9b534eeed7" name="SoldInShops" label="SoldInShops : String" fieldName="_soldInShops" />
+      <Property Id="09072e51-a46d-4e33-9ceb-900eb62ca7b2" name="TotalQuantitySold" type="Int32" label="TotalQuantitySold : Int32" fieldName="_totalQuantitySold" />
+      <Property Id="333e162f-fbca-4e61-984c-caa757f37971" name="TotalIncomes" type="Double" label="TotalIncomes : Double" fieldName="_totalIncomes" />
     </DomainClass>
   </Types>
   <domainContext>

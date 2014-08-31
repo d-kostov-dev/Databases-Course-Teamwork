@@ -28,7 +28,7 @@
                 var allReports = mySQLConnection.sexStoreReports;
                 foreach (var report in allReports)
                 {
-                    Console.WriteLine(report.product_code + " " + report.product_name);
+                    //Console.WriteLine(report.product_code + " " + report.product_name);
                 }
                 //var newReport = new sexStoreReports() { Id = 3, product_code = 1001, product_name = "Miss Dulboko Gurlo" };
                 //mySQLConnection.Add(newReport);

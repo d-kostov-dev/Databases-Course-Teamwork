@@ -23,6 +23,8 @@
 
             sqlServerConnection = new SQLServerContextFactory().Create();
 
+            var reports = new List<ProductReport>();
+
             using (sqlServerConnection)
             {
                 //Console.WriteLine("Cities");
@@ -81,17 +83,34 @@
 
                 //sqlServerConnection.SaveChanges();
 
-                ProductReport.ExportToJson(sqlServerConnection);
+                //ProductReport.ExportToJson(sqlServerConnection);
+
+                reports = ProductReport.CreateReportForEveryProduct(sqlServerConnection);
             }
 
-            //var mySQLConnection = new MySQLContext("MySQLConnStrGYaramov");
+
+
+            var mySQLConnection = new MySQLContext("MySQLConnStrGYaramov");
             
-            //using (mySQLConnection)
-            //{
-            //    var newReport = new sexStoreReports() { Id = 3, product_code = 1001, product_name = "Miss Dulboko Gurlo" };
-            //    mySQLConnection.Add(newReport);
-            //    mySQLConnection.SaveChanges();
-            //}
+            using (mySQLConnection)
+            {
+                foreach (var report in reports)
+                {
+                    var newReport = new sexStoreReports() 
+                    { 
+                        Id = report.Id, 
+                        ProductCode = report.ProductCode, 
+                        Name = report.Name,
+                        SoldInShops = string.Join(" ", report.ShopNames),
+                        TotalQuantitySold = report.TotalQuantitySold,
+                        TotalIncomes = report.TotalIncomes
+                    };
+                    mySQLConnection.Add(newReport);
+                    
+                }
+
+                mySQLConnection.SaveChanges();
+            }
         }
 
 

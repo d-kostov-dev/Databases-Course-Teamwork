@@ -36,29 +36,68 @@ namespace MySQLServer
 			}
 		}
 		
-		private int _product_code;
-		public virtual int product_code
+		private int _productCode;
+		public virtual int ProductCode
 		{
 			get
 			{
-				return this._product_code;
+				return this._productCode;
 			}
 			set
 			{
-				this._product_code = value;
+				this._productCode = value;
 			}
 		}
 		
-		private string _product_name;
-		public virtual string product_name
+		private string _name;
+		public virtual string Name
 		{
 			get
 			{
-				return this._product_name;
+				return this._name;
 			}
 			set
 			{
-				this._product_name = value;
+				this._name = value;
+			}
+		}
+		
+		private string _soldInShops;
+		public virtual string SoldInShops
+		{
+			get
+			{
+				return this._soldInShops;
+			}
+			set
+			{
+				this._soldInShops = value;
+			}
+		}
+		
+		private int _totalQuantitySold;
+		public virtual int TotalQuantitySold
+		{
+			get
+			{
+				return this._totalQuantitySold;
+			}
+			set
+			{
+				this._totalQuantitySold = value;
+			}
+		}
+		
+		private double _totalIncomes;
+		public virtual double TotalIncomes
+		{
+			get
+			{
+				return this._totalIncomes;
+			}
+			set
+			{
+				this._totalIncomes = value;
 			}
 		}
 		

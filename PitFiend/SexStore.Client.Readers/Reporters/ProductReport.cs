@@ -17,6 +17,8 @@
 
         public int Id { get; set; }
 
+        public int ProductCode { get; set; }
+
         public string Name { get; set; }
 
         public List<string> ShopNames 
@@ -30,13 +32,12 @@
        
         public static void ExportToJson(SQLServerContext db)
         {
-            var productsData = GetProductsDataFromDb(db);
-
-            var reports = CreateReportForEveryProduct(db, productsData);
+            var reports = CreateReportForEveryProduct(db);
             
             foreach (var rep in reports)
             {                
                 Console.WriteLine(rep.Id);
+                Console.WriteLine(rep.ProductCode);
                 Console.WriteLine(rep.Name);
                 Console.WriteLine(rep.TotalQuantitySold);
                 Console.WriteLine(rep.TotalIncomes);
@@ -48,9 +49,11 @@
             }
         }
 
-        private static List<ProductReport> CreateReportForEveryProduct(SQLServerContext db, IList<DbDataHelpType> productSalesData)
-        {
+        public static List<ProductReport> CreateReportForEveryProduct(SQLServerContext db)
+        {            
             var productsCount = GetProductsCount(db);
+            var productSalesData = GetProductsDataFromDb(db);
+
             var reports = new List<ProductReport>(productsCount);
 
             for (int i = 1; i <= productsCount; i++)
@@ -60,6 +63,7 @@
                 {
                     if (product.Id == currentProduct.Id)
                     {
+                        currentProduct.ProductCode = product.ProductCode;
                         currentProduct.Name = product.Name;
                         currentProduct.ShopNames.Add(product.ShopName);
                         currentProduct.TotalQuantitySold += product.TotalQuantitySold;
@@ -82,6 +86,7 @@
                     (p, s) => new DbDataHelpType()
                     {
                         Id = p.ID,
+                        ProductCode = p.ProductCode,
                         Name = p.Name,
                         TotalQuantitySold = s.Quantity,
                         TotalIncomes = s.Quantity * p.Price,
