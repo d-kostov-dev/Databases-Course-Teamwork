@@ -35,8 +35,8 @@
             strBuilder.Append("<tr>");
             strBuilder.Append("<td>Product Name</td>");
             strBuilder.Append("<td>Description</td>");
-            strBuilder.Append("<td>Price</td>");
             strBuilder.Append("<td>Quantity in stock</td>");
+            strBuilder.Append("<td>Price</td>");
             strBuilder.Append("</tr>");
 
             foreach (var product in products)

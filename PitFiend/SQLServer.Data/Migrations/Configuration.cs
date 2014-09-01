@@ -36,6 +36,7 @@ namespace SQLServer.Data.Migrations
             var vibratorType = new ProductType() { ID = 1, Name = "Vibrator" };
             var sexDollType = new ProductType() { ID = 2, Name = "Sex Doll" };
             var lubricantType = new ProductType() { ID = 3, Name = "Lubricant" };
+            var pornMovieType = new ProductType() { ID = 4, Name = "Porn Movies" };
 
             // Products
             var productOne = new Product()
@@ -98,6 +99,51 @@ namespace SQLServer.Data.Migrations
                 },
             };
 
+            var productFive = new Product()
+            {
+                ID = 5,
+                ProductCode = 1005,
+                Name = "How I Banged Your Mother",
+                Description = "Porn Movie",
+                Price = 11.99,
+                Type = pornMovieType,
+                QuantityInStock = 4,
+                Categories = new List<Category>()
+                {
+                    unisexCategory,
+                },
+            };
+
+            var productSix = new Product()
+            {
+                ID = 6,
+                ProductCode = 1006,
+                Name = "American Cream Pie",
+                Description = "Porn Movie",
+                Price = 11.99,
+                Type = pornMovieType,
+                QuantityInStock = 2,
+                Categories = new List<Category>()
+                {
+                    unisexCategory,
+                },
+            };
+
+            var productSeven = new Product()
+            {
+                ID = 7,
+                ProductCode = 1007,
+                Name = "Whore of the Rings",
+                Description = "Porn Movie",
+                Price = 11.99,
+                Type = pornMovieType,
+                QuantityInStock = 3,
+                Categories = new List<Category>()
+                {
+                    unisexCategory,
+                },
+            };
+
             // Shops
             var shopOne = new Shop()
             {
@@ -110,7 +156,8 @@ namespace SQLServer.Data.Migrations
                     productOne,
                     productTwo,
                     productThree,
-                    productFour
+                    productFour,
+                    productFive
                 },
             };
 
@@ -125,7 +172,10 @@ namespace SQLServer.Data.Migrations
                     productOne,
                     productTwo,
                     productThree,
-                    productFour
+                    productFour,
+                    productFive,
+                    productSix,
+                    productSeven
                 },
             };
 
@@ -140,7 +190,10 @@ namespace SQLServer.Data.Migrations
                     productOne,
                     productTwo,
                     productThree,
-                    productFour
+                    productFour,
+                    productFive,
+                    productSix,
+                    productSeven
                 },
             };
 
@@ -155,7 +208,9 @@ namespace SQLServer.Data.Migrations
                     productOne,
                     productTwo,
                     productThree,
-                    productFour
+                    productFour,
+                    productSix,
+                    productSeven
                 },
             };
 
@@ -196,10 +251,20 @@ namespace SQLServer.Data.Migrations
                 Quantity = 1
             };
 
+            var saleFive = new Sale()
+            {
+                ID = 5,
+                Product = productSix,
+                Shop = shopFour,
+                SaleDate = DateTime.Now,
+                Quantity = 1
+            };
+
             context.Sales.AddOrUpdate(saleOne);
             context.Sales.AddOrUpdate(saleTwo);
             context.Sales.AddOrUpdate(saleThree);
             context.Sales.AddOrUpdate(saleFour);
+            context.Sales.AddOrUpdate(saleFive);
         }
     }
 }
