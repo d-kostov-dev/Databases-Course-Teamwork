@@ -8,18 +8,16 @@
     {
         public static string BuildName(string methodName, string fileType)
         {
-            const string dateTimeFormatType = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+            const string DateTimeFormatType = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
 
             string tempFolder = string.Format("../../../Reports/{0}Reports/", fileType.ToUpper());
-            string tempFileName = string.Format("{0}-{1}.{2}", methodName, dateTimeFormatType, fileType);
-
+            string tempFileName = string.Format("{0}-{1}.{2}", methodName, DateTimeFormatType, fileType);
             bool ifExists = Directory.Exists(tempFolder);
 
             if (!ifExists)
             {
                 Directory.CreateDirectory(tempFolder);
             }
-            
             
             Console.WriteLine("Example quantities exported to {0}", fileType.ToUpper());
             return tempFolder + tempFileName;
