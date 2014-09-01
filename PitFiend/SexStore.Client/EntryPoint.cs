@@ -98,13 +98,11 @@
         {
             Console.WriteLine("Press 1 to generate XML report.");
             Console.WriteLine("Press 2 to generate PDF report.");
-            Console.WriteLine("Press E to exit the program.");
-            var pressedKey = Console.ReadLine().ToLower();
-            switch (pressedKey)
+            var command = Console.ReadLine().ToLower();
+            switch (command)
             {
                 case "1": XMLExporter.RemainingQuantities(sqlServerConnection); InputCommand(); break;
                 case "2": PDFExporter.RemainingQuantities(sqlServerConnection); InputCommand(); break;
-                case "E": Environment.Exit(0); break;
                 default: Console.WriteLine("Invalid Command"); InputCommand(); break;
             }
             
