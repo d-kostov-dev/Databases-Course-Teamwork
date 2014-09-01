@@ -56,13 +56,9 @@
             page.AppendHtml(strBuilder.ToString());
 
             byte[] file = builder.RenderPdf();
-            string tempFolder = "../../../Reports/PDFReports";
-            string tempFileName = string.Format("{0}-{1}.pdf", DateTime.Now.ToString("yyyy-MM-dd"), "Remaining quantities");
-            if (Helpers.Helpers.DirectoryExist(tempFolder))
-            {
-                if (!File.Exists(tempFolder + tempFileName))
-                    File.WriteAllBytes(tempFolder + tempFileName, file);
-            }
+            string tempFolder = "../../../Reports/PDFReports/";
+            string tempFileName = string.Format("{0}-{1}.pdf", "Remaining quantities", DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"));
+            File.WriteAllBytes(tempFolder + tempFileName, file);
             Console.WriteLine("PDF successfully generated");
         }
     }

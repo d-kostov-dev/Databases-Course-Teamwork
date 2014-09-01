@@ -42,12 +42,14 @@
                 root.Add(currentProduct);
             }
 
-            //save root. default folder is bin\Debug
-            root.Save("../../../Reports/exampleQuantities.xml");
-
-
             //imagine this like the javascript appendChild stuff when adding elements in the DOM
 
+
+
+
+
+            string tempFileName = string.Format("{0}-{1}.xml", "Remaining quantities", DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"));
+            root.Save("../../../Reports/XMLReports/" + tempFileName);
             Console.WriteLine("Example quantities exported to XML");
         }
 

@@ -28,55 +28,55 @@
 
             using (sqlServerConnection)
             {
-                //Console.WriteLine("Cities");
-                //Console.WriteLine("--------------------");
-                //var allCities = sqlServerConnection.Cities;
+                var allCities = sqlServerConnection.Cities;
 
-                //foreach (var city in allCities)
-                //{
-                //    Console.WriteLine(city.Name);
-                //}
+                Console.WriteLine("Cities");
+                Console.WriteLine("--------------------");
+                foreach (var city in allCities)
+                {
+                    Console.WriteLine(city.Name);
+                }
 
-                //Console.WriteLine();
-                //Console.WriteLine("Products");
-                //Console.WriteLine("--------------------");
+                Console.WriteLine();
+                Console.WriteLine("Products");
+                Console.WriteLine("--------------------");
 
-                //var products = sqlServerConnection.Products;
+                var products = sqlServerConnection.Products;
 
-                //foreach (var product in products)
-                //{
-                //    Console.WriteLine(product.Name);
-                //}
+                foreach (var product in products)
+                {
+                    Console.WriteLine(product.Name);
+                }
 
-                //Console.WriteLine();
-                //Console.WriteLine("Shops");
-                //Console.WriteLine("--------------------");
+                Console.WriteLine();
+                Console.WriteLine("Shops");
+                Console.WriteLine("--------------------");
 
-                //var shops = sqlServerConnection.Shops;
+                var shops = sqlServerConnection.Shops;
 
-                //foreach (var shop in shops)
-                //{
-                //    Console.WriteLine(shop.Name);
-                //}
+                foreach (var shop in shops)
+                {
+                    Console.WriteLine(shop.Name);
+                }
 
-                //Console.WriteLine();
-                //Console.WriteLine("Sales");
-                //Console.WriteLine("--------------------");
+                Console.WriteLine();
+                Console.WriteLine("Sales");
+                Console.WriteLine("--------------------");
 
-                //var sales = sqlServerConnection.Sales.Where(x => x.Product.ProductCode == 1001);
+                var sales = sqlServerConnection.Sales.Where(x => x.Product.ProductCode == 1001);
                 
-                //foreach (var sale in sales)
-                //{
-                //    Console.WriteLine("Sale product: {0}, Date:{1}, Quantity: {2}", sale.Product.Name, sale.SaleDate, sale.Quantity);
-                //}
+                foreach (var sale in sales)
+                {
+                    Console.WriteLine("Sale product: {0}, Date:{1}, Quantity: {2}", sale.Product.Name, sale.SaleDate, sale.Quantity);
+                }
 
-                //Console.WriteLine();
-                //Console.WriteLine("Products Info From SQLite DB");
-                //Console.WriteLine("--------------------");
+                Console.WriteLine();
+                Console.WriteLine("Products Info From SQLite DB");
+                Console.WriteLine("--------------------");
 
                 //XLSXExporter.ExportXlsxReport(new SQLiteServConnection(@"Data Source=..\..\..\SQLiteServer.Data\SexStoreProductInfo.sqlite;Version=3;"));
-                //XMLExporter.ExportRemainingQuantitiesToXml(sqlServerConnection);
-                //PDFExporter.ExportRemainingQuantitiesToPdf(sqlServerConnection);
+                XMLExporter.ExportRemainingQuantitiesToXml(sqlServerConnection);
+                PDFExporter.ExportRemainingQuantitiesToPdf(sqlServerConnection);
             }
 
             sqlServerConnection = new SQLServerContextFactory().Create();

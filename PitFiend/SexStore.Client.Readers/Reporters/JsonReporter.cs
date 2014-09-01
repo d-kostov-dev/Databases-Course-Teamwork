@@ -15,7 +15,7 @@
             
             foreach (var report in reports)
             {
-                using (var sw = new StreamWriter(@"..\..\..\Reports\" + report.ProductCode + ".json"))
+                using (var sw = new StreamWriter(@"..\..\..\Reports\JSONReports\" + report.ProductCode + ".json"))
                 using (var writer = new JsonTextWriter(sw))
                 {
                     jsonSer.Serialize(writer, report);

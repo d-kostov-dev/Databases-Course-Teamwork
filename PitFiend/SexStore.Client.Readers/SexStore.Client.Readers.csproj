@@ -64,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\DbDataHelpType.cs" />
-    <Compile Include="Helpers\Helpers.cs" />
     <Compile Include="Helpers\PdfBuilder.cs" />
     <Compile Include="Helpers\ProductReportsCreator.cs" />
     <Compile Include="PDFExporter.cs" />
