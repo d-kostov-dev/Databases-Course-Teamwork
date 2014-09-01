@@ -102,8 +102,8 @@
             var pressedKey = Console.ReadLine().ToLower();
             switch (pressedKey)
             {
-                case "1": XMLExporter.ExportRemainingQuantitiesToXml(sqlServerConnection); break;
-                case "2": PDFExporter.ExportRemainingQuantitiesToPdf(sqlServerConnection); break;
+                case "1": XMLExporter.RemainingQuantities(sqlServerConnection); InputCommand(); break;
+                case "2": PDFExporter.RemainingQuantities(sqlServerConnection); InputCommand(); break;
                 case "E": Environment.Exit(0); break;
                 default: Console.WriteLine("Invalid Command"); InputCommand(); break;
             }

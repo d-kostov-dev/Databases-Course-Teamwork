@@ -7,11 +7,13 @@
     using System.IO;
     using SQLServer.Data;
     using SexStore.Client.Readers.Helpers;
+    using System.Reflection;
 
     public class PDFExporter
     {
-        public static void ExportRemainingQuantitiesToPdf(SQLServerContext db)
+        public static void RemainingQuantities(SQLServerContext db)
         {
+            const string fileType = "pdf";
             const string pageStart =
                 "<!DOCTYPE html>" +
                 "<html lang=\"en\"xmlns=\"http://www.w3.org/1999/xhtml \">" +
@@ -56,10 +58,9 @@
             page.AppendHtml(strBuilder.ToString());
 
             byte[] file = builder.RenderPdf();
-            string tempFolder = "../../../Reports/PDFReports/";
-            string tempFileName = string.Format("{0}-{1}.pdf", "Remaining quantities", DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"));
-            File.WriteAllBytes(tempFolder + tempFileName, file);
-            Console.WriteLine("PDF successfully generated");
+
+            string methodName = MethodBase.GetCurrentMethod().Name;
+            File.WriteAllBytes(Helpers.NamingFactory.BuildName(methodName, fileType), file);
         }
     }
 }

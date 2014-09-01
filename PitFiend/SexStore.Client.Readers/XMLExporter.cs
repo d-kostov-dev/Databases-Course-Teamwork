@@ -4,6 +4,7 @@
     using System.Linq;
     using SQLServer.Data;
     using System.Xml.Linq;
+    using System.Reflection;
 
     /// <summary>
     /// Exports the data from the database into an XML file
@@ -14,10 +15,11 @@
         /// Exports to XML all remaining products and the shops they are located in
         /// </summary>
         /// <param name="db"></param>
-        public static void ExportRemainingQuantitiesToXml(SQLServerContext db)
+        public static void RemainingQuantities(SQLServerContext db)
         {
             //create root element
             XElement root = new XElement("products");
+            const string fileType = "xml";
 
             //make a collection with all the data you want to export to XML. Use as many joins as needed
             var products = db.Products;
@@ -42,15 +44,9 @@
                 root.Add(currentProduct);
             }
 
-            //imagine this like the javascript appendChild stuff when adding elements in the DOM
-
-
-
-
-
-            string tempFileName = string.Format("{0}-{1}.xml", "Remaining quantities", DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"));
-            root.Save("../../../Reports/XMLReports/" + tempFileName);
-            Console.WriteLine("Example quantities exported to XML");
+            string methodName = MethodBase.GetCurrentMethod().Name;
+            root.Save(Helpers.NamingFactory.BuildName(methodName, fileType));
+            
         }
 
 
