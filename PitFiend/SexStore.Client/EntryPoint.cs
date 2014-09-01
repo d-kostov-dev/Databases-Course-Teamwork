@@ -75,8 +75,8 @@
                 Console.WriteLine("--------------------");
 
                 //XLSXExporter.ExportXlsxReport(new SQLiteServConnection(@"Data Source=..\..\..\SQLiteServer.Data\SexStoreProductInfo.sqlite;Version=3;"));
-                XMLExporter.ExportRemainingQuantitiesToXml(sqlServerConnection);
-                PDFExporter.ExportRemainingQuantitiesToPdf(sqlServerConnection);
+
+                InputCommand();
             }
 
             sqlServerConnection = new SQLServerContextFactory().Create();
@@ -92,6 +92,23 @@
         {
             // SQL Server
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<SQLServerContext, SQLServer.Data.Migrations.Configuration>());
+        }
+
+        private static void InputCommand()
+        {
+            Console.WriteLine("Press 1 to generate XML report.");
+            Console.WriteLine("Press 2 to generate PDF report.");
+            Console.WriteLine("Press E to exit the program.");
+            var pressedKey = Console.ReadLine().ToLower();
+            switch (pressedKey)
+            {
+                case "1": XMLExporter.ExportRemainingQuantitiesToXml(sqlServerConnection); break;
+                case "2": PDFExporter.ExportRemainingQuantitiesToPdf(sqlServerConnection); break;
+                case "E": Environment.Exit(0); break;
+                default: Console.WriteLine("Invalid Command"); InputCommand(); break;
+            }
+            
+            
         }
     }
 }
