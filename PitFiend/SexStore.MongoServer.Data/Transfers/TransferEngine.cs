@@ -20,10 +20,13 @@
 
         public void TransferData()
         {
-            this.Context.Shops.AddRange(this.Parsed.GetShops());
-            this.Context.SaveChanges();
+            this.Context.Shops.AddRange(this.Parsed.Shops);
+            int results = this.Context.SaveChanges();
 
-            Console.WriteLine("Data transferred");
+            if (results > 0)
+            {
+                Console.WriteLine("Data transferred");
+            }
         }
     }
 }

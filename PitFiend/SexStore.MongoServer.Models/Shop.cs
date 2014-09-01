@@ -18,6 +18,7 @@
         [BsonId]
         public ObjectId Id { get; set; }
 
+        // Unique
         [BsonRequired]
         public string Name { get; set; }
 

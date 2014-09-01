@@ -4,6 +4,7 @@ namespace SexStore.MongoServer.Data.Migrations
     using System.Collections.Generic;
     using MongoDB.Bson;
     using MongoDB.Driver;
+    using MongoDB.Driver.Builders;
     using MongoServer.Models;
 
     public sealed class Seed
@@ -43,6 +44,8 @@ namespace SexStore.MongoServer.Data.Migrations
         private void SeedProductType()
         {
             MongoCollection<BsonDocument> productTypesCollection = this.Database.GetCollection("ProductTypes");
+            IndexKeysBuilder indexKey = new IndexKeysBuilder().Ascending("Name");
+            productTypesCollection.CreateIndex(indexKey, IndexOptions.SetUnique(true));
 
             if (productTypesCollection.Count() == 0)
             {
@@ -60,6 +63,8 @@ namespace SexStore.MongoServer.Data.Migrations
         private void SeedCities()
         {
             MongoCollection<BsonDocument> citiesCollection = this.Database.GetCollection("Cities");
+            IndexKeysBuilder indexKey = new IndexKeysBuilder().Ascending("Name");
+            citiesCollection.CreateIndex(indexKey, IndexOptions.SetUnique(true));
 
             if (citiesCollection.Count() == 0)
             {
@@ -78,6 +83,8 @@ namespace SexStore.MongoServer.Data.Migrations
         private void SeedProducts()
         {
             MongoCollection<BsonDocument> productsCollection = this.Database.GetCollection("Products");
+            IndexKeysBuilder indexKey = new IndexKeysBuilder().Ascending("ProductCode");
+            productsCollection.CreateIndex(indexKey, IndexOptions.SetUnique(true));
 
             if (productsCollection.Count() == 0)
             {
@@ -102,6 +109,8 @@ namespace SexStore.MongoServer.Data.Migrations
         private void SeedShops()
         {
             MongoCollection<BsonDocument> shopsCollection = this.Database.GetCollection("Shops");
+            IndexKeysBuilder indexKey = new IndexKeysBuilder().Ascending("Name");
+            shopsCollection.CreateIndex(indexKey, IndexOptions.SetUnique(true));
 
             if (shopsCollection.Count() == 0)
             {

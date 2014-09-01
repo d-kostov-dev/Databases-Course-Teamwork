@@ -22,6 +22,11 @@
             Seed test = new Seed(sexStore);
             test.Initialize();
 
+            MongoCollection<BsonDocument> cities = sexStore.GetCollection("Cities");
+
+            ////City qmbol = new City("Qmbol");
+            ////cities.Insert(qmbol);
+
             TransferEngine yolo = new TransferEngine(sexStore);
             yolo.TransferData();
         }

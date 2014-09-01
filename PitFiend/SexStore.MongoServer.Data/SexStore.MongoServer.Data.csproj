@@ -52,7 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\Seed.cs" />
+    <Compile Include="Initialization\Seed.cs" />
     <Compile Include="Transfers\SqlParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transfers\TransferEngine.cs" />

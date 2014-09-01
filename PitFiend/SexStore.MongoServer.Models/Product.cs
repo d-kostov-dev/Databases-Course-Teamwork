@@ -33,6 +33,7 @@
 
         public string Description { get; set; }
 
+        // Unique
         [BsonRequired]
         public int ProductCode { get; set; }
 

@@ -11,6 +11,11 @@
 
     public sealed class SqlParser
     {
+        private IDictionary<ObjectId, SQL.City> parsedCities;
+        private IDictionary<ObjectId, SQL.ProductType> parsedTypes;
+        private IDictionary<ObjectId, SQL.Product> parsedProducts;
+        private ISet<SQL.Shop> parsedShops;
+
         public SqlParser(MongoDatabase database, SQLServerContext sqlDbContext)
         {
             this.Database = database;
@@ -18,19 +23,49 @@
             this.IsDataParsed = false;
         }
 
+        //// Getters
+
+        public ICollection<SQL.ProductType> ProductTypes
+        {
+            get
+            {
+                this.ValidateIfDataIsParsed();
+                return this.parsedTypes.Values;
+            }
+        }
+
+        public ICollection<SQL.City> Cities
+        {
+            get
+            {
+                this.ValidateIfDataIsParsed();
+                return this.parsedCities.Values;
+            }
+        }
+
+        public ICollection<SQL.Product> Products
+        {
+            get
+            {
+                this.ValidateIfDataIsParsed();
+                return this.parsedProducts.Values;
+            }
+        }
+
+        public ICollection<SQL.Shop> Shops
+        {
+            get
+            {
+                this.ValidateIfDataIsParsed();
+                return this.parsedShops;
+            }
+        }
+
         private MongoDatabase Database { get; set; }
 
         private SQLServerContext SqlDbContext { get; set; }
 
         private bool IsDataParsed { get; set; }
-
-        private IDictionary<ObjectId, SQL.City> ParsedCities { get; set; }
-
-        private IDictionary<ObjectId, SQL.ProductType> ParsedTypes { get; set; }
-
-        private IDictionary<ObjectId, SQL.Product> ParsedProducts { get; set; }
-
-        private ISet<SQL.Shop> ParsedShops { get; set; }
 
         public void InitializeParsing()
         {
@@ -53,42 +88,12 @@
             }
         }
 
-        //// Get methods
-
-        public ICollection<SQL.ProductType> GetProductTypes()
-        {
-            this.ValidateIfDataIsParsed();
-
-            return this.ParsedTypes.Values;
-        }
-
-        public ICollection<SQL.City> GetCities()
-        {
-            this.ValidateIfDataIsParsed();
-
-            return this.ParsedCities.Values;
-        }
-
-        public ICollection<SQL.Product> GetProducts()
-        {
-            this.ValidateIfDataIsParsed();
-
-            return this.ParsedProducts.Values;
-        }
-
-        public ICollection<SQL.Shop> GetShops()
-        {
-            this.ValidateIfDataIsParsed();
-
-            return this.ParsedShops;
-        }
-
         //// Parse methods
 
         private void ParseProductTypesToSql()
         {
             var productTypes = this.GetCursor<Mongo.ProductType>("ProductTypes");
-            this.ParsedTypes = new Dictionary<ObjectId, SQL.ProductType>();
+            this.parsedTypes = new Dictionary<ObjectId, SQL.ProductType>();
 
             foreach (Mongo.ProductType type in productTypes)
             {
@@ -97,14 +102,14 @@
                     Name = type.Name
                 };
 
-                this.ParsedTypes.Add(type.Id, current);
+                this.parsedTypes.Add(type.Id, current);
             }
         }
 
         private void ParseCitiesToSql()
         {
             var cities = this.GetCursor<Mongo.City>("Cities");
-            this.ParsedCities = new Dictionary<ObjectId, SQL.City>();
+            this.parsedCities = new Dictionary<ObjectId, SQL.City>();
 
             foreach (Mongo.City city in cities)
             {
@@ -113,14 +118,14 @@
                     Name = city.Name
                 };
 
-                this.ParsedCities.Add(city.Id, current);
+                this.parsedCities.Add(city.Id, current);
             }
         }
 
         private void ParseProductsToSql()
         {
             var products = this.GetCursor<Mongo.Product>("Products");
-            this.ParsedProducts = new Dictionary<ObjectId, SQL.Product>();
+            this.parsedProducts = new Dictionary<ObjectId, SQL.Product>();
 
             foreach (Mongo.Product product in products)
             {
@@ -128,7 +133,7 @@
                 SQL.ProductType currentProductType;
                 IQueryable<SQL.Category> categoriesQuery = this.GetSqlCategories(product.CategoryIds);
 
-                if (!this.ParsedTypes.TryGetValue(currentTypeId, out currentProductType))
+                if (!this.parsedTypes.TryGetValue(currentTypeId, out currentProductType))
                 {
                     throw new KeyNotFoundException(
                         "The provided ObjectId of IDictionary<ObjectId, SQL.ProductType> couldn't" +
@@ -146,21 +151,21 @@
                     Categories = categoriesQuery.ToList<SQL.Category>() //// Keep an eye on this !!!
                 };
 
-                this.ParsedProducts.Add(product.Id, current);
+                this.parsedProducts.Add(product.Id, current);
             }
         }
 
         private void ParseShopsToSql()
         {
             var shops = this.GetCursor<Mongo.Shop>("Shops");
-            this.ParsedShops = new HashSet<SQL.Shop>();
+            this.parsedShops = new HashSet<SQL.Shop>();
 
             foreach (Mongo.Shop shop in shops)
             {
                 ObjectId currentCityId = shop.CityId;
                 SQL.City currentCity;
                 
-                if (!this.ParsedCities.TryGetValue(currentCityId, out currentCity))
+                if (!this.parsedCities.TryGetValue(currentCityId, out currentCity))
                 {
                     throw new KeyNotFoundException(
                         "The provided ObjectId of IDictionary<ObjectId, SQL.City> couldn't" +
@@ -173,7 +178,7 @@
                 {
                     SQL.Product currentProduct;
                     
-                    if (!this.ParsedProducts.TryGetValue(productId, out currentProduct))
+                    if (!this.parsedProducts.TryGetValue(productId, out currentProduct))
                     {
                         throw new KeyNotFoundException(
                             "The provided ObjectId of IDictionary<ObjectId, SQL.Product> couldn't" +
@@ -191,7 +196,7 @@
                     Products = currentProducts
                 };
 
-                this.ParsedShops.Add(current);
+                this.parsedShops.Add(current);
             }
         }
 
