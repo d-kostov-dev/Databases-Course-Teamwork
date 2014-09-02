@@ -65,8 +65,9 @@
         {
             Console.WriteLine(MenuSeparator());
             Console.WriteLine("Main Operations:");
-            Console.WriteLine("'SP' - Shows all products in the SQLServer Database");
-            Console.WriteLine("'ZEX - Exports information from ZIP file. Extracts the Excel data and writes to MongoDB'");
+
+            Console.WriteLine("'SP' - Shows all products in the SQLServer Database"); // DONE
+            Console.WriteLine("'ZEX - Exports information from ZIP file and loads it to SQLServer'"); // DONE
             Console.WriteLine("'MIP' - Imports products from MongoDB to SQLServer");
 
             Console.WriteLine();
@@ -139,7 +140,6 @@
 
                 Console.Clear();
 
-                // IF TRUE
                 Console.WriteLine("Data from ZIP imported");
             }
             else if (command == "mip")
