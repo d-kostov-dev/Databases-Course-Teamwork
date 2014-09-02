@@ -65,21 +65,21 @@
             }
         }
 
-        private void InsertToDatabase(int companyId, int customerId, int destinationId, decimal price, DateTime date)
-        {
-            using (var db = new AirportDbContext())
-            {
-                var ticket = new Ticket();
-                ticket.Company = db.Companies.Find(companyId);
-                ticket.Customer = db.Customers.Find(customerId);
-                ticket.Destination = db.Destinations.Find(destinationId);
-                ticket.TravelingDate = date;
-                ticket.Price = price;
-
-
-                db.Tickets.Add(ticket);
-                db.SaveChanges();
-            }
-        }
+       private void InsertToDatabase(int companyId, int customerId, int destinationId, decimal price, DateTime date)
+       {
+           using (var db = new AirportDbContext())
+           {
+               var ticket = new Ticket();
+               ticket.Company = db.Companies.Find(companyId);
+               ticket.Customer = db.Customers.Find(customerId);
+               ticket.Destination = db.Destinations.Find(destinationId);
+               ticket.TravelingDate = date;
+               ticket.Price = price;
+       
+       
+               db.Tickets.Add(ticket);
+               db.SaveChanges();
+           }
+       }
     }
 }

@@ -23,8 +23,9 @@
 
         public const string pageEnd = "</body></html>";
 
-        public static void RemainingQuantities(SQLServerContext db)
+        public static void RemainingQuantities()
         {
+            var db = new SQLServerContextFactory().Create();
             var strBuilder = new StringBuilder();
             var products = db.Products;
 
@@ -61,8 +62,9 @@
             File.WriteAllBytes(Helpers.NamingFactory.BuildName(methodName, fileType), file);
         }
 
-        public static void SalesLastWeek(SQLServerContext db)
+        public static void AllSales()
         {
+            var db = new SQLServerContextFactory().Create();
             var strBuilder = new StringBuilder();
             var sales = db.Sales;
 

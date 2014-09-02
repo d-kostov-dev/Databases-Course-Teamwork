@@ -19,9 +19,6 @@
                 Directory.CreateDirectory(tempFolder);
             }
 
-            Console.WriteLine("-------------------------------------------------");
-            Console.WriteLine("Report exported to {0}", fileType.ToUpper());
-            Console.WriteLine("-------------------------------------------------");
             return tempFolder + tempFileName;
         }
     }
