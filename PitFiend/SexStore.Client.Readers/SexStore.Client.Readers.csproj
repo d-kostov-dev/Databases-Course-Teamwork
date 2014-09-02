@@ -71,6 +71,7 @@
     <Compile Include="Helpers\ProductReportsCreator.cs" />
     <Compile Include="PDFExporter.cs" />
     <Compile Include="Helpers\ProductReport.cs" />
+    <Compile Include="HelperStructures\Product.cs" />
     <Compile Include="Reporters\JsonReporter.cs" />
     <Compile Include="Reporters\MySQLReporter.cs" />
     <Compile Include="XLSXExporter.cs" />
