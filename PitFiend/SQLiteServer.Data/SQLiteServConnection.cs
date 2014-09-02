@@ -28,10 +28,12 @@
                 {
                     while (reader.Read())
                     {
+                        //System.Console.WriteLine(reader["expenses"].ToString());
                         int productCode = int.Parse(reader["product_code"].ToString());
                         string productName = (string)reader["product_name"];
                         int productTax = int.Parse(reader["tax_percent"].ToString());
-                        var currentProductInfo = new ProductInfo(productCode, productName, productTax);
+                        double expenses = double.Parse(reader["expenses"].ToString());
+                        var currentProductInfo = new ProductInfo(productCode, productName, productTax, expenses);
                         reportsToReturn.Add(currentProductInfo);
                     }
                 }

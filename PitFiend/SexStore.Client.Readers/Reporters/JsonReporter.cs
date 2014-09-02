@@ -9,8 +9,10 @@
 
     public static class JsonReporter
     {
-        public static void ExportReportToJsonFiles(IList<ProductReport> reports)
+        public static void ExportReportToJsonFiles()
         {
+            IList<ProductReport> reports = ProductReportsCreator.CreateReportForEveryProductFromSQLServer();
+
             var jsonSer = new JsonSerializer();
             
             foreach (var report in reports)

@@ -4,10 +4,13 @@
     <orm:namespace name="MySQLServer" default="true">
       <orm:class name="sexStoreReports" use-default-mapping="true" uniqueId="b9d48787-8a52-4666-b27a-59c0a65abe4d">
         <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
           <orm:single-field field-name="_id" />
         </orm:identity>
         <orm:field name="_id" property="Id" uniqueId="5e1fd056-dc77-45ea-9b36-5162683d0e8f" type="System.Int32">
-          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" backend-calculated="true" ado-type="Int32" />
         </orm:field>
         <orm:field name="_productCode" property="ProductCode" uniqueId="08e6102e-27ab-4c75-bdc0-fc2e8c6ea0d2" type="System.Int32">
           <orm:column name="ProductCode" sql-type="integer" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
@@ -66,7 +69,7 @@
     </BackendConfigurationSettings>
   </ModelSettings>
   <Types>
-    <DomainClass Id="b9d48787-8a52-4666-b27a-59c0a65abe4d" name="sexStoreReports" namespace="MySQLServer" showPropertiesCompartment="true" showNavigationCompartment="true" showImplementationCompartment="true">
+    <DomainClass Id="b9d48787-8a52-4666-b27a-59c0a65abe4d" name="sexStoreReports" namespace="MySQLServer" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="5e1fd056-dc77-45ea-9b36-5162683d0e8f" name="Id" type="Int32" label="Id : Int32" identity="true" fieldName="_id" />
       <Property Id="08e6102e-27ab-4c75-bdc0-fc2e8c6ea0d2" name="ProductCode" type="Int32" label="ProductCode : Int32" fieldName="_productCode" />
       <Property Id="ebd435cc-460d-46ce-9213-ea8c142df61b" name="Name" label="Name : String" fieldName="_name" />

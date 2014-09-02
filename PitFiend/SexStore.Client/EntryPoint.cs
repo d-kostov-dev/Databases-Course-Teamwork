@@ -28,25 +28,6 @@
             {
                 ExecuteCommands();
             }
-
-
-            //var mySQLConnection = new MySQLContext("MySQLConnStrDKostovLaptop");
-
-            ////var reports = new List<ProductReport>();
-
-            ////using (sqlServerConnection)
-            ////{
-            
-            ////    XLSXExporter.ExportXlsxReport(new SQLiteServConnection(@"Data Source=..\..\..\SQLiteServer.Data\SexStoreProductInfo.sqlite;Version=3;"));
-
-            ////}
-
-            //sqlServerConnection = new SQLServerContextFactory().Create();
-            //reports = ProductReportsCreator.CreateReportForEveryProduct(sqlServerConnection);
-
-            //JsonReporter.ExportReportToJsonFiles(reports);
-
-            ////MySQLReporter.ExportReportToMySQLDb(mySQLConnection, reports);
         }
 
         /// <summary>
@@ -221,28 +202,30 @@
             {
                 Console.Clear();
                 Console.WriteLine("Generating JSON report for 'SALES'");
-                // TO DO:
+
+                JsonReporter.ExportReportToJsonFiles();
 
                 Console.Clear();
-
                 Console.WriteLine("Saving JSON reports in MySQL...");
-                // TO DO:
+
+                MySQLReporter.ExportReportToMySQLDb();
 
                 Console.Clear();
-
-                // IF TRUE
                 Console.WriteLine("Operation Completed");
             }
             else if (command == "gex")
             {
                 Console.Clear();
                 Console.WriteLine("Generating Excel report...");
-                // TO DO:
+
+                Excel2007Reporter.ExportReportToXlsxFile();
 
                 Console.Clear();
-
-                // IF TRUE
                 Console.WriteLine("Report Generated");
+            }
+            else
+            {
+                Console.Clear();
             }
 
             Console.WriteLine();
