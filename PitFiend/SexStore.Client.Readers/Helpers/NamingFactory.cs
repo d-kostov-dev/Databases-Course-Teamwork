@@ -20,7 +20,7 @@
             }
 
             Console.WriteLine("-------------------------------------------------");
-            Console.WriteLine("Example quantities exported to {0}", fileType.ToUpper());
+            Console.WriteLine("Report exported to {0}", fileType.ToUpper());
             Console.WriteLine("-------------------------------------------------");
             return tempFolder + tempFileName;
         }

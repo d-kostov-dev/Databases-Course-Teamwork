@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<products>
+  <sale vendor="Store #3">
+    <summary>
+      <date>2014-09-02T13:25:28.147</date>
+      <total-sum>299.97</total-sum>
+    </summary>
+  </sale>
+  <sale vendor="Store #2">
+    <summary>
+      <date>2014-09-02T13:25:28.15</date>
+      <total-sum>11.98</total-sum>
+    </summary>
+  </sale>
+  <sale vendor="Store #1">
+    <summary>
+      <date>2014-09-02T13:25:28.15</date>
+      <total-sum>19.99</total-sum>
+    </summary>
+  </sale>
+  <sale vendor="Store #4">
+    <summary>
+      <date>2014-09-02T13:25:28.15</date>
+      <total-sum>23.99</total-sum>
+    </summary>
+  </sale>
+  <sale vendor="Store #4">
+    <summary>
+      <date>2014-09-02T13:25:28.15</date>
+      <total-sum>11.99</total-sum>
+    </summary>
+  </sale>
+</products>

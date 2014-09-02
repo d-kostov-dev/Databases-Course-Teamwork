@@ -11,6 +11,8 @@
     /// </summary>
     public class XMLExporter
     {
+        public const string fileType = "xml";
+        
         /// <summary>
         /// Exports to XML all remaining products and the shops they are located in
         /// </summary>
@@ -19,7 +21,7 @@
         {
             //create root element
             XElement root = new XElement("products");
-            const string fileType = "xml";
+            
 
             //make a collection with all the data you want to export to XML. Use as many joins as needed
             var products = db.Products;
@@ -53,8 +55,36 @@
         /// <summary>
         /// TODO - Export to XML all sales that happened in the last month
         /// </summary>
-        public static void ExportSalesForLastMonth(SQLServerContext database)
+        public static void AllSales(SQLServerContext db)
         {
+            //create root element
+            XElement root = new XElement("products");
+
+
+            //make a collection with all the data you want to export to XML. Use as many joins as needed
+            var sales = db.Sales;
+
+            //go through all items in the collection
+            foreach (var sale in sales)
+            {
+                //for every nested element you must create new instance of XElement
+                XElement currentProduct = new XElement("sale"); //create tag
+                currentProduct.SetAttributeValue("vendor", sale.Shop.Name); //set attribute
+
+                XElement productInfo = new XElement("summary"); //nest element after "Product"
+                productInfo.Add(new XElement("date", sale.SaleDate)); //add element inside "Info" 
+                //you can create those as new XElement like the creation of "Info"
+                productInfo.Add(new XElement("total-sum", (sale.Product.Price * sale.Quantity).ToString("#.##")));
+
+                //add info to product
+                currentProduct.Add(productInfo);
+
+                //add current set of tags to root
+                root.Add(currentProduct);
+            }
+
+            string methodName = MethodBase.GetCurrentMethod().Name;
+            root.Save(Helpers.NamingFactory.BuildName(methodName, fileType));
 
         }
     }

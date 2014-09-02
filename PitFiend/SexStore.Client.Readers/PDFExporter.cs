@@ -11,23 +11,21 @@
 
     public class PDFExporter
     {
+        public const string fileType = "pdf";
+        public const string pageStart =
+            "<!DOCTYPE html>" +
+            "<html lang=\"en\"xmlns=\"http://www.w3.org/1999/xhtml \">" +
+            "<head>" +
+                "<meta charset=\"utf-8\" />" +
+                "<title>Report</title>" +
+            "</head>" +
+            "<body>";
+
+        public const string pageEnd = "</body></html>";
+
         public static void RemainingQuantities(SQLServerContext db)
         {
-            const string fileType = "pdf";
-            const string pageStart =
-                "<!DOCTYPE html>" +
-                "<html lang=\"en\"xmlns=\"http://www.w3.org/1999/xhtml \">" +
-                "<head>" +
-                    "<meta charset=\"utf-8\" />" +
-                    "<title>Report</title>" +
-                "</head>" +
-                "<body>";
-
-            const string pageEnd = "</body></html>";
-
-            //get the database and make stringbuilder to append elements
             var strBuilder = new StringBuilder();
-            //make a collection with all the data you want to export to XML. Use as many joins as needed
             var products = db.Products;
 
             strBuilder.Append("<table border='1'>");
@@ -50,6 +48,48 @@
                 strBuilder.AppendFormat("<td>{0}</td>", product.Price);
                 strBuilder.Append("</tr>");
             }
+
+            strBuilder.Append("</table>");
+
+            PDFBuilder.HtmlToPdfBuilder builder = new PDFBuilder.HtmlToPdfBuilder(PageSize.LETTER);
+            PDFBuilder.HtmlPdfPage page = builder.AddPage();
+            page.AppendHtml(strBuilder.ToString());
+
+            byte[] file = builder.RenderPdf();
+
+            string methodName = MethodBase.GetCurrentMethod().Name;
+            File.WriteAllBytes(Helpers.NamingFactory.BuildName(methodName, fileType), file);
+        }
+
+        public static void SalesLastWeek(SQLServerContext db)
+        {
+            var strBuilder = new StringBuilder();
+            var sales = db.Sales;
+
+            strBuilder.Append("<table border='1'>");
+            strBuilder.Append("<tr>");
+            strBuilder.Append("<th style=\"font-size:16px; text-align:center;\" colspan='5'>Aggregated Sales</th>");
+            strBuilder.Append("</tr>");
+            strBuilder.Append("<tr>");
+            strBuilder.Append("<td>Product</td>");
+            strBuilder.Append("<td>Quantity</td>");
+            strBuilder.Append("<td>Price</td>");
+            strBuilder.Append("<td>Location</td>");
+            strBuilder.Append("<td>Sum</td>");
+            strBuilder.Append("</tr>");
+
+            foreach (var sale in sales)
+            {
+                strBuilder.Append("<tr>");
+                strBuilder.AppendFormat("<td>{0}</td>", sale.Product.Name);
+                strBuilder.AppendFormat("<td>{0}</td>", sale.Quantity);
+                strBuilder.AppendFormat("<td>{0}</td>", sale.Product.Price);
+                strBuilder.AppendFormat("<td>{0}</td>", sale.Shop.Name);
+                strBuilder.AppendFormat("<td>{0}</td>", sale.Quantity * sale.Product.Price);
+                strBuilder.Append("</tr>");
+
+            }
+
 
             strBuilder.Append("</table>");
 
