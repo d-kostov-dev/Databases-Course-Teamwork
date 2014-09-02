@@ -17,9 +17,10 @@
         /// Exports to XML all remaining products and the shops they are located in
         /// </summary>
         /// <param name="db"></param>
-        public static void RemainingQuantities(SQLServerContext db)
+        public static void RemainingQuantities()
         {
-            //create root element
+            //create root element and database
+            var db = new SQLServerContextFactory().Create();
             XElement root = new XElement("products");
             
 
@@ -55,9 +56,10 @@
         /// <summary>
         /// TODO - Export to XML all sales that happened in the last month
         /// </summary>
-        public static void AllSales(SQLServerContext db)
+        public static void AllSales()
         {
-            //create root element
+            //create root element and database
+            var db = new SQLServerContextFactory().Create();
             XElement root = new XElement("products");
 
 
@@ -67,6 +69,7 @@
             //go through all items in the collection
             foreach (var sale in sales)
             {
+                
                 //for every nested element you must create new instance of XElement
                 XElement currentProduct = new XElement("sale"); //create tag
                 currentProduct.SetAttributeValue("vendor", sale.Shop.Name); //set attribute
