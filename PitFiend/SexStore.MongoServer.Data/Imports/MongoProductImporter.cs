@@ -4,8 +4,6 @@
     using System.Linq;
     using Client.Readers.HelperStructures;
     using MongoDB.Bson;
-    using MongoDB.Bson.Serialization;
-    using MongoDB.Bson.Serialization.Attributes;
     using MongoDB.Driver;
     using MongoDB.Driver.Builders;
     using Strategies;
@@ -13,8 +11,8 @@
 
     public sealed class MongoProductImporter
     {
-        private IMongoProductImport importStrategy;
         private readonly IList<Product> products;
+        private IMongoProductImport importStrategy;
 
         public MongoProductImporter(ImportType importType, string fileName, MongoDatabase database)
         {
@@ -36,7 +34,7 @@
 
             MongoCollection<BsonDocument> shopCollection = this.Database.GetCollection("Shops");
 
-            // lo6o mi e
+            //// lo6o mi e
             foreach (var shop in shops)
             {
                 ICollection<ObjectId> products = shop.Value;
@@ -57,7 +55,7 @@
                 shopCollection.Update(query, update);
             }
 
-            // WARNING: This check might not be adequate
+            //// WARNING: This check might not be adequate
             foreach (WriteConcernResult import in result)
             {
                 if (!import.Ok)

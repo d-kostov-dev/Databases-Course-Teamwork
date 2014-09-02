@@ -127,8 +127,6 @@
             var products = this.GetCursor<Mongo.Product>("Products");
             this.parsedProducts = new Dictionary<ObjectId, SQL.Product>();
 
-            //Console.WriteLine("YOLO: " + products.Count());
-
             foreach (Mongo.Product product in products)
             {
                 ObjectId currentTypeId = product.TypeId;
@@ -141,8 +139,6 @@
                         "The provided ObjectId of IDictionary<ObjectId, SQL.ProductType> couldn't" +
                         "be found. No SQL.ProductType is returned. SQL.Product parsing aborted.");
                 }
-
-                //Console.WriteLine(product.Name);
 
                 SQL.Product current = new SQL.Product()
                 {
