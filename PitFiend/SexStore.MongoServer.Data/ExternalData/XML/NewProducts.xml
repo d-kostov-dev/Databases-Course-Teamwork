@@ -11,6 +11,9 @@
       <category-id>5</category-id>
       <category-id>4</category-id>
     </categories>
+    <shops>
+      <shop>Store #2</shop>
+    </shops>
   </product>
   <product name="Whore of the Rings" code="1076" type="Sex Doll">
     <info>
@@ -22,5 +25,9 @@
       <category-id>2</category-id>
       <category-id>0</category-id>
     </categories>
+    <shops>
+      <shop>Store #1</shop>
+      <shop>Store #4</shop>
+    </shops>
   </product>
 </products>

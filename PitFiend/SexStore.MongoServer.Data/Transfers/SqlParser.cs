@@ -80,11 +80,11 @@
             }
             catch (KeyNotFoundException ex)
             {
-                Console.WriteLine("KeyNotFoundException: {0}\n\n{1}", ex.Message, ex.StackTrace);
+                Console.WriteLine("KeyNotFoundException: {0}", ex.Message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception: {0}\n\n{1}", ex.Message, ex.StackTrace);
+                Console.WriteLine("Exception: {0}", ex.Message);
             }
         }
 
@@ -127,6 +127,8 @@
             var products = this.GetCursor<Mongo.Product>("Products");
             this.parsedProducts = new Dictionary<ObjectId, SQL.Product>();
 
+            //Console.WriteLine("YOLO: " + products.Count());
+
             foreach (Mongo.Product product in products)
             {
                 ObjectId currentTypeId = product.TypeId;
@@ -139,6 +141,8 @@
                         "The provided ObjectId of IDictionary<ObjectId, SQL.ProductType> couldn't" +
                         "be found. No SQL.ProductType is returned. SQL.Product parsing aborted.");
                 }
+
+                //Console.WriteLine(product.Name);
 
                 SQL.Product current = new SQL.Product()
                 {

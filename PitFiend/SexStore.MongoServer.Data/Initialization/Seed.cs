@@ -1,4 +1,4 @@
-namespace SexStore.MongoServer.Data.Migrations
+namespace SexStore.MongoServer.Data.Initialization
 {
     using System;
     using System.Collections.Generic;

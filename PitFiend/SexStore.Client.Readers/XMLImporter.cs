@@ -59,6 +59,13 @@
                     categoryIds.Add(int.Parse(category.Value));
                 }
 
+                // Shop names
+                List<string> shops = new List<string>();
+                foreach (var shop in product.Descendants("shop"))
+                {
+                    shops.Add(shop.Value);
+                }
+
                 Product currentProduct = new Product()
                 {
                     Name = name,
@@ -67,7 +74,8 @@
                     Type = type,
                     Price = price,
                     Quantity = quantity,
-                    CategoryIds = categoryIds
+                    CategoryIds = categoryIds,
+                    Shops = shops
                 };
 
                 products.Add(currentProduct);

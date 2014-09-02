@@ -17,5 +17,7 @@
         public string Type { get; set; }
 
         public ICollection<int> CategoryIds { get; set; }
+
+        public ICollection<string> Shops { get; set; }
     }
 }

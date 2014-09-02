@@ -36,7 +36,7 @@
 
             ////using (sqlServerConnection)
             ////{
-            
+
             ////    XLSXExporter.ExportXlsxReport(new SQLiteServConnection(@"Data Source=..\..\..\SQLiteServer.Data\SexStoreProductInfo.sqlite;Version=3;"));
 
             ////}
@@ -248,7 +248,7 @@
             Console.WriteLine();
             ShowMenu();
         }
-        
+
         private static void ShowAllProductsInSQLServer()
         {
             var sqlServerConnection = new SQLServerContextFactory().Create();
