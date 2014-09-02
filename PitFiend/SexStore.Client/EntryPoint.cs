@@ -122,7 +122,20 @@
 
                 Console.Write("Enter file path:");
                 var filePath = Console.ReadLine();
-                // TO DO:
+
+                if (!filePath.EndsWith("\\"))
+                {
+                    filePath += "\\";
+                }
+
+                Console.Write("Enter file name:");
+                var fileName = Console.ReadLine();
+
+                Console.Write("Extraction directory name:");
+                var directoryName = Console.ReadLine();
+
+                var zipExtractor = new ZipExtractor(filePath, fileName, directoryName);
+                zipExtractor.GetAllReports();
 
                 Console.Clear();
 

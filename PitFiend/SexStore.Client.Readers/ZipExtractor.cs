@@ -6,35 +6,40 @@
     using System.Data.OleDb;
     using System.IO;
     using System.IO.Compression;
+    using SexStore.Models;
 
     public class ZipExtractor
     {
-        private const string ExtactionFoder = "reports";
-
+        private readonly string extactionFoder;
         private readonly string pathToArchive;
         private readonly string archiveName;
-        private readonly SQLServerContext dbConnection;
 
-        public ZipExtractor(string pathToArchive, string fileName, SQLServerContext sqlServerConnection)
+        public ZipExtractor(string pathToArchive, string fileName, string extractFolderName)
         {
             this.pathToArchive = pathToArchive;
             this.archiveName = fileName;
-            this.dbConnection = sqlServerConnection;
+            this.extactionFoder = extractFolderName;
         }
 
-        public void ExtractFromArchive()
+        public void GetAllReports()
         {
-            if (Directory.Exists(pathToArchive + ExtactionFoder))
+            this.ExtractFromArchive();
+            this.ParseReports();
+        }
+
+        private void ExtractFromArchive()
+        {
+            if (Directory.Exists(pathToArchive + extactionFoder))
             {
-                Directory.Delete(pathToArchive + ExtactionFoder, true);
+                Directory.Delete(pathToArchive + extactionFoder, true);
             }
 
-            ZipFile.ExtractToDirectory(this.pathToArchive + this.archiveName, this.pathToArchive + ExtactionFoder);
+            ZipFile.ExtractToDirectory(this.pathToArchive + this.archiveName, this.pathToArchive + extactionFoder);
         }
 
-        public void ParseReports()
+        private void ParseReports()
         {
-            var allFolders = Directory.GetDirectories(this.pathToArchive + ExtactionFoder);
+            var allFolders = Directory.GetDirectories(this.pathToArchive + extactionFoder);
 
             foreach (var folder in allFolders)
             {
@@ -68,31 +73,30 @@
 
                 foreach (DataRow row in dataTable.Rows)
                 {
-                    var companyID = int.Parse(row.ItemArray[0].ToString());
-                    var customerID = int.Parse(row.ItemArray[1].ToString());
-                    var destinationID = int.Parse(row.ItemArray[2].ToString());
-                    var price = decimal.Parse(row.ItemArray[3].ToString());
+                    var shopID = int.Parse(row.ItemArray[0].ToString());
+                    var productID = int.Parse(row.ItemArray[1].ToString());
+                    var quantity = int.Parse(row.ItemArray[2].ToString());
                     var date = DateTime.Parse(folderName);
-                    InsertToDatabase(companyID, customerID, destinationID, price, date);
+                    InsertToDatabase(shopID, productID, quantity, date);
                 }
             }
         }
 
-        private void InsertToDatabase(int companyId, int customerId, int destinationId, decimal price, DateTime date)
+        private void InsertToDatabase(int shopID, int productID, int quantity, DateTime date)
         {
-            //using (var db = new AirportDbContext())
-            //{
-            //    var ticket = new Ticket();
-            //    ticket.Company = db.Companies.Find(companyId);
-            //    ticket.Customer = db.Customers.Find(customerId);
-            //    ticket.Destination = db.Destinations.Find(destinationId);
-            //    ticket.TravelingDate = date;
-            //    ticket.Price = price;
+            var dbConnection = new SQLServerContextFactory().Create();
 
+            using (dbConnection)
+            {
+                var sale = new Sale();
+                sale.Shop = dbConnection.Shops.Find(shopID);
+                sale.Product = dbConnection.Products.Find(productID);
+                sale.Quantity = quantity;
+                sale.SaleDate = date;
 
-            //    db.Tickets.Add(ticket);
-            //    db.SaveChanges();
-            //}
+                dbConnection.Sales.Add(sale);
+                dbConnection.SaveChanges();
+            }
         }
     }
 }
