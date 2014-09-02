@@ -16,8 +16,6 @@
 
     public class EntryPoint
     {
-        //private static SQLServerContext sqlServerConnection;
-
         public static void Main()
         {
             Console.WriteLine("Welcome to World of Sex - Toys For Destruction");
@@ -30,62 +28,17 @@
             {
                 ExecuteCommands();
             }
-            //sqlServerConnection = new SQLServerContextFactory().Create();
+
+
             //var mySQLConnection = new MySQLContext("MySQLConnStrDKostovLaptop");
 
             ////var reports = new List<ProductReport>();
 
             ////using (sqlServerConnection)
             ////{
-            ////    var allCities = sqlServerConnection.Cities;
+            
+            ////    XLSXExporter.ExportXlsxReport(new SQLiteServConnection(@"Data Source=..\..\..\SQLiteServer.Data\SexStoreProductInfo.sqlite;Version=3;"));
 
-            ////    Console.WriteLine("Cities");
-            ////    Console.WriteLine("--------------------");
-            ////    foreach (var city in allCities)
-            ////    {
-            ////        Console.WriteLine(city.Name);
-            ////    }
-
-            ////    Console.WriteLine();
-            ////    Console.WriteLine("Products");
-            ////    Console.WriteLine("--------------------");
-
-            ////    var products = sqlServerConnection.Products;
-
-            ////    foreach (var product in products)
-            ////    {
-            ////        Console.WriteLine(product.Name);
-            ////    }
-
-            ////    Console.WriteLine();
-            ////    Console.WriteLine("Shops");
-            ////    Console.WriteLine("--------------------");
-
-            ////    var shops = sqlServerConnection.Shops;
-
-            ////    foreach (var shop in shops)
-            ////    {
-            ////        Console.WriteLine(shop.Name);
-            ////    }
-
-            ////    Console.WriteLine();
-            ////    Console.WriteLine("Sales");
-            ////    Console.WriteLine("--------------------");
-
-            ////    var sales = sqlServerConnection.Sales.Where(x => x.Product.ProductCode == 1001);
-
-            ////    foreach (var sale in sales)
-            ////    {
-            ////        Console.WriteLine("Sale product: {0}, Date:{1}, Quantity: {2}", sale.Product.Name, sale.SaleDate, sale.Quantity);
-            ////    }
-
-            ////    Console.WriteLine();
-            ////    Console.WriteLine("Products Info From SQLite DB");
-            ////    Console.WriteLine("--------------------");
-
-            ////    //XLSXExporter.ExportXlsxReport(new SQLiteServConnection(@"Data Source=..\..\..\SQLiteServer.Data\SexStoreProductInfo.sqlite;Version=3;"));
-
-            ////    InputCommand();
             ////}
 
             //sqlServerConnection = new SQLServerContextFactory().Create();
@@ -93,19 +46,25 @@
 
             //JsonReporter.ExportReportToJsonFiles(reports);
 
-
             ////MySQLReporter.ExportReportToMySQLDb(mySQLConnection, reports);
         }
 
+        /// <summary>
+        /// Initializes the SQL Server database with migrations. New changes to the model, are automatically inserted in the database.
+        /// </summary>
         private static void InitDatabasesMigrations()
         {
             // SQL Server
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<SQLServerContext, SQLServer.Data.Migrations.Configuration>());
         }
 
+        /// <summary>
+        /// Shows the Sex Store main menu.
+        /// </summary>
         private static void ShowMenu()
         {
             Console.WriteLine(MenuSeparator());
+            Console.WriteLine("Main Operations:");
             Console.WriteLine("'SP' - Shows all products in the SQLServer Database");
             Console.WriteLine("'ZEX - Exports information from ZIP file. Extracts the Excel data and writes to MongoDB'");
             Console.WriteLine("'MIP' - Imports products from MongoDB to SQLServer");
@@ -125,6 +84,7 @@
             Console.WriteLine("'XMLM' - Imports data from XML to MongoDB");
 
             Console.WriteLine();
+            Console.WriteLine("Other Operations:");
 
             Console.WriteLine("'JSR' - Generates JSON report for 'SALES' and saves the information in MySQL");
             Console.WriteLine("'GEX' - Generates excel report from MySQL and SQLite");
@@ -132,11 +92,19 @@
             Console.WriteLine(MenuSeparator());
         }
 
+        /// <summary>
+        /// Gets a separator for UI stuff.
+        /// </summary>
+        /// <param name="separatorLength">Separator length.</param>
+        /// <returns>String with given length.</returns>
         private static string MenuSeparator(int separatorLength = 30)
         {
             return new string('-', separatorLength);
         }
 
+        /// <summary>
+        /// Executes commands for the Sex Store App.
+        /// </summary>
         private static void ExecuteCommands()
         {
             string command = Console.ReadLine().ToLowerInvariant();
@@ -145,7 +113,7 @@
             {
                 Console.Clear();
                 Console.WriteLine("Showing all products in the SQL Server database...");
-                // TO DO:
+                ShowAllProductsInSQLServer();
             }
             else if (command == "zex")
             {
@@ -274,6 +242,26 @@
 
             Console.WriteLine();
             ShowMenu();
+        }
+        
+        private static void ShowAllProductsInSQLServer()
+        {
+            var sqlServerConnection = new SQLServerContextFactory().Create();
+
+            using (sqlServerConnection)
+            {
+                var products = sqlServerConnection.Products;
+
+                Console.WriteLine("##################################################");
+
+                foreach (var product in products)
+                {
+                    Console.Write("#");
+                    Console.WriteLine("{1} - {0} - {3} - {2}", product.Name, product.ProductCode, product.Price, product.Description);
+                }
+
+                Console.WriteLine("##################################################");
+            }
         }
     }
 }
