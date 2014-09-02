@@ -16,17 +16,5 @@
 
         [BsonRequired]
         public string Name { get; set; }
-
-        ////public ISet<Product> Products { get; set; }
-
-        ////public void AddProduct(Product product)
-        ////{
-        ////    this.Products.Add(product);
-        ////}
-
-        ////public void RemoveProduct(Product product)
-        ////{
-        ////    this.Products.Remove(product);
-        ////}
     }
 }
