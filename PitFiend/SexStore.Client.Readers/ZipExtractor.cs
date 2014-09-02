@@ -1,5 +1,6 @@
 ﻿namespace SexStore.Client.Readers
 {
+    using SQLServer.Data;
     using System;
     using System.Data;
     using System.Data.OleDb;
@@ -8,15 +9,17 @@
 
     public class ZipExtractor
     {
-        private const string ExtactionFoder = "Reports";
+        private const string ExtactionFoder = "reports";
 
         private readonly string pathToArchive;
         private readonly string archiveName;
+        private readonly SQLServerContext dbConnection;
 
-        public ZipExtractor(string pathToArchive, string fileName)
+        public ZipExtractor(string pathToArchive, string fileName, SQLServerContext sqlServerConnection)
         {
             this.pathToArchive = pathToArchive;
             this.archiveName = fileName;
+            this.dbConnection = sqlServerConnection;
         }
 
         public void ExtractFromArchive()
@@ -27,8 +30,12 @@
             }
 
             ZipFile.ExtractToDirectory(this.pathToArchive + this.archiveName, this.pathToArchive + ExtactionFoder);
+        }
 
+        public void ParseReports()
+        {
             var allFolders = Directory.GetDirectories(this.pathToArchive + ExtactionFoder);
+
             foreach (var folder in allFolders)
             {
                 var folderName = Path.GetFileName(folder);
@@ -36,23 +43,29 @@
 
                 foreach (var file in allFiles)
                 {
-                    ExcelParser(folderName, file);
+                    ParseExcelFile(folderName, file);
                 }
             }
         }
 
-        private void ExcelParser(string folderName, string pathOfFile)
+        private void ParseExcelFile(string folderName, string pathOfFile)
         {
-            var connectionString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=Excel 12.0;", pathOfFile);
-            OleDbConnection connection = new OleDbConnection(connectionString);
+            var connectionString = 
+                string.Format(
+                "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=Excel 12.0;",
+                pathOfFile);
 
-            connection.Open();
-            using (connection)
+            OleDbConnection excelConnection = new OleDbConnection(connectionString);
+
+            excelConnection.Open();
+
+            using (excelConnection)
             {
                 var dataTable = new DataTable();
-                var adapter = new OleDbDataAdapter("select * from [Tickets$] ", connection);
+                var adapter = new OleDbDataAdapter("SELECT * FROM [Sales$] ", excelConnection);
 
                 adapter.Fill(dataTable);
+
                 foreach (DataRow row in dataTable.Rows)
                 {
                     var companyID = int.Parse(row.ItemArray[0].ToString());
@@ -67,19 +80,19 @@
 
         private void InsertToDatabase(int companyId, int customerId, int destinationId, decimal price, DateTime date)
         {
-            using (var db = new AirportDbContext())
-            {
-                var ticket = new Ticket();
-                ticket.Company = db.Companies.Find(companyId);
-                ticket.Customer = db.Customers.Find(customerId);
-                ticket.Destination = db.Destinations.Find(destinationId);
-                ticket.TravelingDate = date;
-                ticket.Price = price;
+            //using (var db = new AirportDbContext())
+            //{
+            //    var ticket = new Ticket();
+            //    ticket.Company = db.Companies.Find(companyId);
+            //    ticket.Customer = db.Customers.Find(customerId);
+            //    ticket.Destination = db.Destinations.Find(destinationId);
+            //    ticket.TravelingDate = date;
+            //    ticket.Price = price;
 
 
-                db.Tickets.Add(ticket);
-                db.SaveChanges();
-            }
+            //    db.Tickets.Add(ticket);
+            //    db.SaveChanges();
+            //}
         }
     }
 }
