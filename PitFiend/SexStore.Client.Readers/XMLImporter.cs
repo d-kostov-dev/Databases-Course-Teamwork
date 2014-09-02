@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Xml.Linq;
+    using HelperStructures;
 
     public class XMLImporter
     {
@@ -28,6 +29,51 @@
             }
 
             return expenses;
+        }
+
+        public static List<Product> GetProducts(string fileName)
+        {
+            List<Product> products = new List<Product>();
+
+            XDocument xmlDoc = XDocument.Load(fileName);
+
+            foreach (var product in xmlDoc.Descendants("product"))
+            {
+                // Attributes
+                string name = product.Attribute("name").Value;
+                int productCode = int.Parse(product.Attribute("code").Value);
+                string type = product.Attribute("type").Value;
+
+                // Info tag
+                var productInfo = product.Element("info");
+
+                // Info's elements
+                string description = productInfo.Element("description").Value;
+                decimal price = decimal.Parse(productInfo.Element("price").Value);
+                int quantity = int.Parse(productInfo.Element("quantity").Value);
+
+                // Category IDs
+                List<int> categoryIds = new List<int>();
+                foreach (var category in product.Descendants("category-id"))
+                {
+                    categoryIds.Add(int.Parse(category.Value));
+                }
+
+                Product currentProduct = new Product()
+                {
+                    Name = name,
+                    ProductCode = productCode,
+                    Description = description,
+                    Type = type,
+                    Price = price,
+                    Quantity = quantity,
+                    CategoryIds = categoryIds
+                };
+
+                products.Add(currentProduct);
+            }
+
+            return products;
         }
 
       //  public static void ImportExpensesReportsFromXml()

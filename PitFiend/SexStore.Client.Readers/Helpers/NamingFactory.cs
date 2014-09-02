@@ -8,7 +8,8 @@
     {
         public static string BuildName(string methodName, string fileType)
         {
-            const string DateTimeFormatType = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+            // Removed const since you cannot assign a constant with DateTime - Georgi
+            string DateTimeFormatType = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
 
             string tempFolder = string.Format("../../../Reports/{0}Reports/", fileType.ToUpper());
             string tempFileName = string.Format("{0}-{1}.{2}", methodName, DateTimeFormatType, fileType);

@@ -52,6 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Imports\MongoProductImporter.cs" />
+    <Compile Include="Imports\Strategies\IMongoProductImport.cs" />
+    <Compile Include="Imports\ImportType.cs" />
+    <Compile Include="Imports\Strategies\XmlProductImport.cs" />
     <Compile Include="Initialization\Seed.cs" />
     <Compile Include="Transfers\SqlParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,6 +66,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SexStore.Client.Readers\SexStore.Client.Readers.csproj">
+      <Project>{d5b6b667-1e72-407c-ae74-ab1ceced56b7}</Project>
+      <Name>SexStore.Client.Readers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SexStore.Models\SexStore.Models.csproj">
       <Project>{f07be725-3cef-44b6-bf90-3ac649e37daa}</Project>
       <Name>SexStore.Models</Name>
@@ -74,6 +82,11 @@
       <Project>{4037b777-a3bb-4cc7-8bca-83f84b00fb4e}</Project>
       <Name>SQLServer.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExternalData\XML\NewProducts.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

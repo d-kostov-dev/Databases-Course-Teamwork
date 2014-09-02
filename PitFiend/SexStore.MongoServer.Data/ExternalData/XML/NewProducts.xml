@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<products>
+  <product name="American Cream Pie" code="1055" type="Vibrator">
+    <info>
+      <description>Porn Movie</description>
+      <price>11.99</price>
+      <quantity>2</quantity>
+    </info>
+    <categories>
+      <category-id>3</category-id>
+      <category-id>5</category-id>
+      <category-id>4</category-id>
+    </categories>
+  </product>
+  <product name="Whore of the Rings" code="1076" type="Sex Doll">
+    <info>
+      <description>Somekind of a description</description>
+      <price>99.50</price>
+      <quantity>5</quantity>
+    </info>
+    <categories>
+      <category-id>2</category-id>
+      <category-id>0</category-id>
+    </categories>
+  </product>
+</products>

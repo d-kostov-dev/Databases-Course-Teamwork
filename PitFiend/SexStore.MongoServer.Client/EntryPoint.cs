@@ -5,6 +5,7 @@
     using MongoDB.Bson;
     using MongoDB.Driver;
     using MongoDB.Driver.Builders;
+    using MongoServer.Data.Imports;
     using MongoServer.Data.Migrations;
     using MongoServer.Data.Transfers;
     using MongoServer.Models;
@@ -22,13 +23,13 @@
             Seed test = new Seed(sexStore);
             test.Initialize();
 
-            MongoCollection<BsonDocument> cities = sexStore.GetCollection("Cities");
+            //// IMPORTING XML => MongoDB
+            ////MongoProductImporter xmlImport = new MongoProductImporter(ImportType.XML, "NewProducts.xml", sexStore);
+            ////xmlImport.InitializeImport();
 
-            ////City qmbol = new City("Qmbol");
-            ////cities.Insert(qmbol);
-
-            TransferEngine yolo = new TransferEngine(sexStore);
-            yolo.TransferData();
+            //// TRANSFERING MongoDB => SQL Server
+            ////TransferEngine yolo = new TransferEngine(sexStore);
+            ////yolo.TransferData();
         }
     }
 }
