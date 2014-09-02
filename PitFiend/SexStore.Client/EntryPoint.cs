@@ -145,6 +145,7 @@
                 Console.Clear();
                 Console.WriteLine("Generating PDF report for 'Available Quantities'...");
                 PDFExporter.AllSales();
+
                 Console.Clear();
 
                 // IF TRUE
@@ -155,6 +156,7 @@
                 Console.Clear();
                 Console.WriteLine("Generating PDF report for 'Sales'...");
                 PDFExporter.AllSales();
+
                 Console.Clear();
                 // IF TRUE
                 Console.WriteLine("Report Generated");
@@ -164,6 +166,7 @@
                 Console.Clear();
                 Console.WriteLine("Generating XML report for 'Available Quantities'...");
                 XMLExporter.RemainingQuantities();
+
                 Console.Clear();
                 // IF TRUE
                 Console.WriteLine("Report Generated");

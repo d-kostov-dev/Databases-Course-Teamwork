@@ -94,10 +94,11 @@
 
 
             strBuilder.Append("</table>");
+            var resultingTable = strBuilder.ToString();
 
             PDFBuilder.HtmlToPdfBuilder builder = new PDFBuilder.HtmlToPdfBuilder(PageSize.LETTER);
             PDFBuilder.HtmlPdfPage page = builder.AddPage();
-            page.AppendHtml(strBuilder.ToString());
+            page.AppendHtml(resultingTable);
 
             byte[] file = builder.RenderPdf();
 
