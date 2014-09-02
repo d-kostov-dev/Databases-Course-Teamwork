@@ -73,14 +73,14 @@
             Console.WriteLine();
             Console.WriteLine("PDF Operations:");
 
-            Console.WriteLine("'QPDF' - Generates PDF report for 'Available Quantities'");
-            Console.WriteLine("'SPDF' - Generates PDF report for 'Sales'");
+            Console.WriteLine("'QPDF' - Generates PDF report for 'Available Quantities'"); // DONE
+            Console.WriteLine("'SPDF' - Generates PDF report for 'Sales'"); // DONE
 
             Console.WriteLine();
             Console.WriteLine("XML Operations:");
 
-            Console.WriteLine("'QXML' - Generates XML report for 'Available Quantities'");
-            Console.WriteLine("'SXML' - Generates XML report for 'Sales'");
+            Console.WriteLine("'QXML' - Generates XML report for 'Available Quantities'"); // DONE
+            Console.WriteLine("'SXML' - Generates XML report for 'Sales'"); // DONE
             Console.WriteLine("'XMLS' - Imports data from XML to SQLServer");
             Console.WriteLine("'XMLM' - Imports data from XML to MongoDB");
 
@@ -139,7 +139,6 @@
                 zipExtractor.GetAllReports();
 
                 Console.Clear();
-
                 Console.WriteLine("Data from ZIP imported");
             }
             else if (command == "mip")
@@ -157,11 +156,9 @@
             {
                 Console.Clear();
                 Console.WriteLine("Generating PDF report for 'Available Quantities'...");
-                PDFExporter.AllSales();
+                PDFExporter.RemainingQuantities();
 
                 Console.Clear();
-
-                // IF TRUE
                 Console.WriteLine("Report Generated");
             }
             else if (command == "spdf")
@@ -171,7 +168,6 @@
                 PDFExporter.AllSales();
 
                 Console.Clear();
-                // IF TRUE
                 Console.WriteLine("Report Generated");
             }
             else if (command == "qxml")
@@ -181,7 +177,6 @@
                 XMLExporter.RemainingQuantities();
 
                 Console.Clear();
-                // IF TRUE
                 Console.WriteLine("Report Generated");
             }
             else if (command == "sxml")
@@ -192,7 +187,6 @@
                 XMLExporter.AllSales();
 
                 Console.Clear();
-                // IF TRUE
                 Console.WriteLine("Report Generated");
             }
             else if (command == "xmls")
