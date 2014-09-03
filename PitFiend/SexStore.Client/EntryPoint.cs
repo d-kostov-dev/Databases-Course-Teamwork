@@ -80,7 +80,7 @@
 
             Console.WriteLine("'QXML' - Generates XML report for 'Available Quantities'"); // DONE
             Console.WriteLine("'SXML' - Generates XML report for 'Sales'"); // DONE
-            Console.WriteLine("'XMLS' - Imports data from XML to SQLServer");
+            Console.WriteLine("'XMLS' - Imports data from XML to SQLServer"); // DONE
             Console.WriteLine("'XMLM' - Imports data from XML to MongoDB"); // DONE
 
             Console.WriteLine();
