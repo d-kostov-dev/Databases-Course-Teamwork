@@ -3,12 +3,12 @@
   <entityDiagramsDiagram dslVersion="2.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="MySQLContext" fillColor="62, 62, 65" isDefault="true">
     <DomainModelMoniker name="/MySQLContext" />
     <nestedChildShapes>
-      <classShape Id="f853c398-cae3-4d34-b33b-581fbad34027" absoluteBounds="3.25, 0.75, 4.375, 2.5319775390625">
+      <classShape Id="f853c398-cae3-4d34-b33b-581fbad34027" absoluteBounds="3.25, 0.75, 4.375, 2.2384594726562503">
         <DomainClassMoniker name="/MySQLContext/sexStoreReports" />
         <nestedChildShapes>
-          <elementListCompartment Id="8558abf0-e43b-476a-a9dc-63908740b572" absoluteBounds="3.2650000000000006, 1.2599999999999998, 4.3450000000000006, 1.4031982421875" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
-          <elementListCompartment Id="0180db9d-4c61-400c-8414-2a98f3b98c51" absoluteBounds="3.2649999999999997, 2.6731982421875, 4.3450000000000006, 0.2493896484375" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
-          <elementListCompartment Id="19691570-c225-48ae-bf43-8a7dda3ad8af" absoluteBounds="3.2649999999999997, 2.932587890625, 4.3450000000000006, 0.2493896484375" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="8558abf0-e43b-476a-a9dc-63908740b572" absoluteBounds="3.2650000000000006, 1.2599999999999998, 4.3450000000000006, 1.19354248046875" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="0180db9d-4c61-400c-8414-2a98f3b98c51" absoluteBounds="3.265, 2.46354248046875, 4.3450000000000006, 0.20745849609375" name="ImplementationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+          <elementListCompartment Id="19691570-c225-48ae-bf43-8a7dda3ad8af" absoluteBounds="3.265, 2.6810009765625002, 4.3450000000000006, 0.20745849609375022" name="NavigationCompartment" titleTextColor="Black" itemTextColor="Black" />
         </nestedChildShapes>
       </classShape>
     </nestedChildShapes>
