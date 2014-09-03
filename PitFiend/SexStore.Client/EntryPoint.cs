@@ -87,7 +87,7 @@
             Console.WriteLine("Other Operations:");
 
             Console.WriteLine("'JSR' - Generates JSON report for 'SALES' and saves the information in MySQL"); // DONE
-            Console.WriteLine("'GEX' - Generates excel report from MySQL and SQLite");
+            Console.WriteLine("'GEX' - Generates excel report from MySQL and SQLite"); // DONE
 
             Console.WriteLine(MenuSeparator());
         }
@@ -192,7 +192,7 @@
                 Console.Write("Enter file path: ");
                 var filePath = Console.ReadLine();
 
-                ImportXMLData(filePath);
+                XMLtoSQL(filePath);
 
                 //Console.Clear();
 
@@ -244,7 +244,7 @@
             ShowMenu();
         }
 
-        private static void ImportXMLData(string filePath)
+        private static void XMLtoSQL(string filePath)
         {
             try
             {
@@ -320,6 +320,7 @@
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.InnerException);
             }
 
             // IF TRUE
