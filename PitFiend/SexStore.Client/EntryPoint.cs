@@ -382,7 +382,9 @@
            ,,,,,,:       .,,,,,,.                                        
 ";
 
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(logo);
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("Loading...");
 
             Console.ReadLine();
