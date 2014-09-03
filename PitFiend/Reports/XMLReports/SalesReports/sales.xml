@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sales>
+  <sale>
+    <productId>1</productId>
+    <shopId>2</shopId>
+    <quantity>10</quantity>
+    <saleDate>2014-12-23</saleDate>
+  </sale>
+  <sale>
+    <productId>2</productId>
+    <shopId>2</shopId>
+    <quantity>2</quantity>
+    <saleDate>2014-10-23</saleDate>
+  </sale>
+  <sale>
+    <productId>3</productId>
+    <shopId>1</shopId>
+    <quantity>2</quantity>
+    <saleDate>2014-9-23</saleDate>
+  </sale>
+  <sale>
+    <productId>3</productId>
+    <shopId>1</shopId>
+    <quantity>1</quantity>
+    <saleDate>2014-5-23</saleDate>
+  </sale>
+  <sale>
+    <productId>4</productId>
+    <shopId>2</shopId>
+    <quantity>4</quantity>
+    <saleDate>2014-1-23</saleDate>
+  </sale>
+  <sale>
+    <productId>5</productId>
+    <shopId>3</shopId>
+    <quantity>3</quantity>
+    <saleDate>2014-3-23</saleDate>
+  </sale>
+  <sale>
+    <productId>1</productId>
+    <shopId>3</shopId>
+    <quantity>2</quantity>
+    <saleDate>2014-12-23</saleDate>
+  </sale>
+</sales>
