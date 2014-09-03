@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using MongoDB.Driver;
+    using SexStore.Models;
     using SQLServer.Data;
 
     public class TransferEngine
@@ -20,7 +21,18 @@
 
         public int TransferData()
         {
-            this.Context.Shops.AddRange(this.Parsed.Shops);
+            foreach (Shop shop in this.Context.Shops)
+            {
+                try
+                {
+                    this.Context.Shops.Add(shop);
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+            
             int results = this.Context.SaveChanges();
 
             return results;
