@@ -85,7 +85,7 @@
             Console.WriteLine();
             Console.WriteLine("Other Operations:");
 
-            Console.WriteLine("'JSR' - Generates JSON report for 'SALES' and saves the information in MySQL");
+            Console.WriteLine("'JSR' - Generates JSON report for 'SALES' and saves the information in MySQL"); // DONE
             Console.WriteLine("'GEX' - Generates excel report from MySQL and SQLite");
 
             Console.WriteLine(MenuSeparator());
