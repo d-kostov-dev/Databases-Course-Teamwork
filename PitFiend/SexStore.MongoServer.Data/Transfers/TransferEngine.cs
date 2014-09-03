@@ -21,7 +21,7 @@
 
         public int TransferData()
         {
-            foreach (Shop shop in this.Context.Shops)
+            foreach (Shop shop in this.Parsed.Shops)
             {
                 try
                 {
