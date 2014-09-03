@@ -25,7 +25,7 @@
             
 
             //make a collection with all the data you want to export to XML. Use as many joins as needed
-            var products = db.Products;
+            var products = db.Products.OrderBy(p => p.QuantityInStock);
 
             //go through all items in the collection
             foreach (var product in products)
@@ -64,7 +64,7 @@
 
 
             //make a collection with all the data you want to export to XML. Use as many joins as needed
-            var sales = db.Sales;
+            var sales = db.Sales.OrderBy(s => s.Shop.Name);
 
             //go through all items in the collection
             foreach (var sale in sales)

@@ -27,7 +27,7 @@
         {
             var db = new SQLServerContextFactory().Create();
             var strBuilder = new StringBuilder();
-            var products = db.Products;
+            var products = db.Products.OrderBy(p => p.QuantityInStock);
 
             strBuilder.Append("<table border='1'>");
             strBuilder.Append("<tr>");
@@ -66,27 +66,27 @@
         {
             var db = new SQLServerContextFactory().Create();
             var strBuilder = new StringBuilder();
-            var sales = db.Sales;
+            var sales = db.Sales.OrderBy(s => s.Shop.Name);
 
             strBuilder.Append("<table border='1'>");
             strBuilder.Append("<tr>");
             strBuilder.Append("<th style=\"font-size:16px; text-align:center;\" colspan='5'>Aggregated Sales</th>");
             strBuilder.Append("</tr>");
             strBuilder.Append("<tr>");
+            strBuilder.Append("<td>Location</td>");
             strBuilder.Append("<td>Product</td>");
             strBuilder.Append("<td>Quantity</td>");
             strBuilder.Append("<td>Price</td>");
-            strBuilder.Append("<td>Location</td>");
             strBuilder.Append("<td>Sum</td>");
             strBuilder.Append("</tr>");
 
             foreach (var sale in sales)
             {
                 strBuilder.Append("<tr>");
+                strBuilder.AppendFormat("<td>{0}</td>", sale.Shop.Name);
                 strBuilder.AppendFormat("<td>{0}</td>", sale.Product.Name);
                 strBuilder.AppendFormat("<td>{0}</td>", sale.Quantity);
                 strBuilder.AppendFormat("<td>{0}</td>", sale.Product.Price);
-                strBuilder.AppendFormat("<td>{0}</td>", sale.Shop.Name);
                 strBuilder.AppendFormat("<td>{0}</td>", sale.Quantity * sale.Product.Price);
                 strBuilder.Append("</tr>");
 
