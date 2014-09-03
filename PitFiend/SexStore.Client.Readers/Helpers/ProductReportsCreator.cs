@@ -81,7 +81,7 @@
 
         private static List<DbDataHelpType> GetProductsDataFromDb(SQLServerContext db)
         {
-            var productsAndTheirSales = db.Products.Join(
+            var productsAndTheirSales = db.Products.GroupJoin(
                     db.Sales,
                     p => p.ID,
                     s => s.Product.ID,
@@ -90,10 +90,10 @@
                         Id = p.ID,
                         ProductCode = p.ProductCode,
                         Name = p.Name,
-                        TotalQuantitySold = s.Quantity,
-                        TotalIncomes = s.Quantity * p.Price,
-                        ShopName = s.Shop.Name
-                    }).ToList();
+                        TotalQuantitySold = s.DefaultIfEmpty().Select(x => x.Quantity).FirstOrDefault(),
+                        TotalIncomes = s.DefaultIfEmpty().Select(x => x.Quantity).FirstOrDefault() * p.Price,
+                        ShopName = s.DefaultIfEmpty().Select(x => x.Shop.Name).FirstOrDefault()
+                    }).ToList();               
 
             return productsAndTheirSales;
         }
