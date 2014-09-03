@@ -320,8 +320,7 @@
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.InnerException);
+                Console.WriteLine("Transfer Not Completed");
             }
 
             // IF TRUE
@@ -377,12 +376,12 @@
        ,,,,,,,,      ,      .,,,,,,,,   ,        ,   ,      ,,  ,.     `,
        ,,,,,,,,,     .     ,,,,,,,,,    ,,      .,   ,      ,,  ,,     `,
        .,,,,,,,,,,  , , ..,,,,,,,,,,    .,      ,,   ,      ,,   ,,    `,
-        :,,,,,,,,,,,   ,,,,,,,,,,,,      :,.  .,,    ,      ,,    ,,`  `,
+        :,,,,,,,,,,,   ,,,,,,,,,,,,      :,.  .,,    ,      ,,    ,,   `,
          :,,,,,,,,,`    ,,,,,,,,,,        ,,,,,,     ,      ,,     ,,,,,,
            ,,,,,,:       .,,,,,,.                                        
 ";
 
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(logo);
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("Loading...");

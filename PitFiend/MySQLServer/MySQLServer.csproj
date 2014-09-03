@@ -72,6 +72,7 @@
     <Content Include="MySQLConnStrDKostov%282014-09-03 11-26-56%29.rlinq.sql" />
     <Content Include="MySQLConnStrDKostov%282014-09-03 13-45-56%29.rlinq.sql" />
     <Content Include="MySQLConnStrDKostov%282014-09-03 13-48-34%29.rlinq.sql" />
+    <Content Include="MySQLConnStrDKostov%282014-09-03 16-35-47%29.rlinq.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Condition="Exists('$(MSBuildExtensionsPath)\OpenAccess.targets')" Project="$(MSBuildExtensionsPath)\OpenAccess.targets" />

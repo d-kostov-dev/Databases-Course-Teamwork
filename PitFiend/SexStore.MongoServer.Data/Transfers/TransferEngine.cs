@@ -26,6 +26,7 @@
                 try
                 {
                     this.Context.Shops.Add(shop);
+                    this.Context.SaveChanges();
                 }
                 catch
                 {
@@ -33,7 +34,8 @@
                 }
             }
             
-            int results = this.Context.SaveChanges();
+            //int results = this.Context.SaveChanges();
+            int results = 1;
 
             return results;
         }
