@@ -23,8 +23,9 @@
     {
         public static void Main()
         {
-            Console.WriteLine("Welcome to World of Sex - Toys For Destruction");
-            Console.WriteLine("Loading...");
+            //Console.WriteLine("Welcome to World of Sex - Toys For Destruction");
+            PrintLogo();
+            
 
             InitDatabasesMigrations();
             SeedMongoDatabase();
@@ -348,6 +349,43 @@
 
                 Console.WriteLine("##################################################");
             }
+        }
+
+        private static void PrintLogo()
+        {
+            string logo = @"                                                                   
+               ,           ,                                             
+               :            ,            ;`'   ;````    :```` ````  :    :
+              ,             :           ;   `; ,       ;      ;      :  :
+             ,.              ,         ;     ; ,::::   ;;;;   ;::     ::  
+             ,               ,,         ;    ; ;           ;: :      :  : 
+            ,                 ,          ;;;:  .       ;;;;;; ;;;;; :    :
+           .,                  ,                                         
+           ,                   ,.                                        
+          ,.                    ,                                        
+          ,                     ,:                          ,,         `,
+         ,,                     ,,                          ,,         `,
+        `,,                     ,,,                         ,,         `,
+        ,,,                     ,,,                         ,,         `,
+       .,,,                     ,,,,       ,,,,,       ,,   ,,      ,,,,,
+       ,,,,`       .   .        ,,,,     ,,,  ,,,     ,,`   ,,    ,,,,..,
+       ,,,,:        .,.         ,,,,,    ,`     ,`   ,,     ,,   ,,    `,
+      `,,,,,         ,         ,,,,,,   ,:      ,,   ,      ,,  `,     `,
+      ,,,,,,.        ,         ,,,,,,   ,        ,   ,      ,,  ,:     `,
+      ,,,,,,,        ,        ,,,,,,,   ,        ,`  ,      ,,  ,`     `,
+      .,,,,,,,       ,       .,,,,,,,   ,        ,`  ,      ,,  ,      `,
+       ,,,,,,,,      ,      .,,,,,,,,   ,        ,   ,      ,,  ,.     `,
+       ,,,,,,,,,     .     ,,,,,,,,,    ,,      .,   ,      ,,  ,,     `,
+       .,,,,,,,,,,  , , ..,,,,,,,,,,    .,      ,,   ,      ,,   ,,    `,
+        :,,,,,,,,,,,   ,,,,,,,,,,,,      :,.  .,,    ,      ,,    ,,`  `,
+         :,,,,,,,,,`    ,,,,,,,,,,        ,,,,,,     ,      ,,     ,,,,,,
+           ,,,,,,:       .,,,,,,.                                        
+";
+
+            Console.WriteLine(logo);
+            Console.WriteLine("Loading...");
+
+            Console.ReadLine();
         }
     }
 }
