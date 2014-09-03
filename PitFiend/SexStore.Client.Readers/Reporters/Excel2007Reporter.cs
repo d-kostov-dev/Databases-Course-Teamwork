@@ -20,11 +20,9 @@
             var sqLitedb = new SQLiteServConnection(@"Data Source=..\..\..\SQLiteServer.Data\SexStoreProductInfo.sqlite;Version=3;");
 
             var reportsFromMySQL = ProductReportsCreator.CreateReportForEveryProductFromMySQL();
+            reportsFromMySQL.OrderBy(x => x.ProductCode);
+
             var reportsFromSQLite = sqLitedb.GetProductsInformation();
-
-
-
-
 
             var newFile = new FileInfo(@"..\..\..\Reports\ExcelReports\Profits report.xlsx");
             if (newFile.Exists)
@@ -79,7 +77,7 @@
 
                     worksheet.Cells[row, 1].Value = product.ProductCode;
                     worksheet.Cells[row, 2].Value = product.Name;
-                    worksheet.Cells[row, 3].Value = product.ShopNames[0];
+                    worksheet.Cells[row, 3].Value = (product.ShopNames.Count > 0 ? product.ShopNames[0] : "");
                     worksheet.Cells[row, 4].Value = product.TotalIncomes;
                     worksheet.Cells[row, 5].Value = tax;
                     worksheet.Cells[row, 6].Value = expenses;

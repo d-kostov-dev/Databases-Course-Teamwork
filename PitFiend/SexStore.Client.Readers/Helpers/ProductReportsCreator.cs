@@ -54,10 +54,12 @@
             {
                 var productsCount = GetProductsCount(db);
                 var productSalesData = GetProductsDataFromDb(db);
+                var firstProductId = GetFirstProductId(db);
 
                 reports = new List<ProductReport>(productsCount);
 
-                for (int i = 1; i <= productsCount; i++)
+                var length = firstProductId + productsCount;
+                for (int i = firstProductId; i < length; i++)
                 {
                     var currentProduct = new ProductReport(i);
                     foreach (var product in productSalesData)
@@ -93,7 +95,7 @@
                         TotalQuantitySold = s.DefaultIfEmpty().Select(x => x.Quantity).FirstOrDefault(),
                         TotalIncomes = s.DefaultIfEmpty().Select(x => x.Quantity).FirstOrDefault() * p.Price,
                         ShopName = s.DefaultIfEmpty().Select(x => x.Shop.Name).FirstOrDefault()
-                    }).ToList();               
+                    }).ToList();
 
             return productsAndTheirSales;
         }
@@ -127,6 +129,12 @@
             var productsCount = db.sexStoreReports.Count();
 
             return productsCount;
+        }
+
+        private static int GetFirstProductId(MySQLContext db)
+        {
+            var id = db.sexStoreReports.Select(x => x.Id).FirstOrDefault();
+            return id;
         }
     }
 }
