@@ -37,7 +37,7 @@ namespace SexStore.MongoServer.Data.Initialization
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception: {0}", ex.Message);
+                Console.WriteLine("Exception: {0}\n{1}", ex.Message, ex.StackTrace);
             }
         }
 
@@ -51,9 +51,9 @@ namespace SexStore.MongoServer.Data.Initialization
             {
                 this.ProductTypesSeeds = new ProductType[]
                 {
-                    new ProductType("Vibrator"),
-                    new ProductType("Sex Doll"),
-                    new ProductType("Lubricant")
+                    new ProductType("Whip"),
+                    new ProductType("Shrink Vagina Pills"),
+                    new ProductType("Stimulants")
                 };
 
                 productTypesCollection.InsertBatch<ProductType>(this.ProductTypesSeeds);
@@ -70,10 +70,9 @@ namespace SexStore.MongoServer.Data.Initialization
             {
                 this.CitiesSeeds = new City[]
                 {
-                    new City("Sofia"),
-                    new City("Plovdiv"),
-                    new City("Varna"),
-                    new City("Bourgas")
+                    new City("Pernik"),
+                    new City("Qmbol"),
+                    new City("Vidin")
                 };
 
                 citiesCollection.InsertBatch<City>(this.CitiesSeeds);
@@ -96,10 +95,10 @@ namespace SexStore.MongoServer.Data.Initialization
                 // Category IDs correspond to MS SQL table 'Categories'
                 this.ProductsSeeds = new Product[]
                 {
-                    new Product("Miss Dulboko Gurlo", "A sex doll", 1001, 99.99M, 5, this.ProductTypesSeeds[1].Id, new[] { 1 }),
-                    new Product("Jumbo Penetrator 3000", "WOW", 1002, 19.99M, 99, this.ProductTypesSeeds[0].Id, new[] { 2 }),
-                    new Product("Dildo Bagings", "Small vibrator", 1003, 23.99M, 11, this.ProductTypesSeeds[0].Id, new[] { 2 }),
-                    new Product("Exotic Liquids", "Slippy lubricant", 1004, 5.99M, 11, this.ProductTypesSeeds[2].Id, new[] { 3 })
+                    new Product("O-Tight", "Giving her first time experience", 1501, 14.99M, 100, this.ProductTypesSeeds[1].Id, new[] { 2 }),
+                    new Product("Bull Performance", "-", 1502, 19.99M, 59, this.ProductTypesSeeds[2].Id, new[] { 1 }),
+                    new Product("Leather Whip", "Pervert's must-have tool", 1503, 46.50M, 11, this.ProductTypesSeeds[0].Id, new[] { 3 }),
+                    new Product("B(.)(.)Bster Whip", "Special leather whip", 1504, 149.99M, 25, this.ProductTypesSeeds[0].Id, new[] { 2 })
                 };
 
                 productsCollection.InsertBatch<Product>(this.ProductsSeeds);
@@ -133,10 +132,9 @@ namespace SexStore.MongoServer.Data.Initialization
 
                 ICollection<Shop> shopsBatch = new HashSet<Shop>()
                 {
-                    new Shop("Store #1", "Mlasdost 1", this.CitiesSeeds[0].Id, products),
-                    new Shop("Store #2", "Drujba 5", this.CitiesSeeds[2].Id, products),
-                    new Shop("Store #3", "Liulin 10", this.CitiesSeeds[1].Id, products),
-                    new Shop("Store #4", "Meden Rudnik", this.CitiesSeeds[3].Id, products)
+                    new Shop("Store #5", "Sveti 'Golf Mk3 GTI' 5", this.CitiesSeeds[0].Id, products),
+                    new Shop("Store #6", "Musala 69", this.CitiesSeeds[2].Id, products),
+                    new Shop("Store #7", "Drujba 3", this.CitiesSeeds[1].Id, products),
                 };
 
                 shopsCollection.InsertBatch<Shop>(shopsBatch);

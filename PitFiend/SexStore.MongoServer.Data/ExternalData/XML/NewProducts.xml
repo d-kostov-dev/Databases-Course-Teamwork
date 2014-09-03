@@ -1,33 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <products>
-  <product name="American Cream Pie" code="1055" type="Vibrator">
+  <product name="Orgasmatic" code="1601" type="Stimulants">
     <info>
-      <description>Porn Movie</description>
-      <price>11.99</price>
-      <quantity>2</quantity>
+      <description>For her pleasure</description>
+      <price>9.99</price>
+      <quantity>250</quantity>
     </info>
     <categories>
-      <category-id>3</category-id>
-      <category-id>5</category-id>
-      <category-id>4</category-id>
+      <category-id>2</category-id>
     </categories>
     <shops>
-      <shop>Store #2</shop>
+      <shop>Store #5</shop>
     </shops>
   </product>
-  <product name="Whore of the Rings" code="1076" type="Sex Doll">
+  <product name="Tactical Whip" code="1602" type="Whip">
     <info>
-      <description>Somekind of a description</description>
+      <description>20inch lightweight whip</description>
       <price>99.50</price>
       <quantity>5</quantity>
     </info>
     <categories>
-      <category-id>2</category-id>
-      <category-id>0</category-id>
+      <category-id>3</category-id>
     </categories>
     <shops>
-      <shop>Store #1</shop>
-      <shop>Store #4</shop>
+      <shop>Store #6</shop>
+      <shop>Store #7</shop>
+    </shops>
+  </product>
+  <product name="Shrinker 2000" code="1603" type="Shrink Vagina Pills">
+    <info>
+      <description>-</description>
+      <price>16.49</price>
+      <quantity>143</quantity>
+    </info>
+    <categories>
+      <category-id>2</category-id>
+    </categories>
+    <shops>
+      <shop>Store #5</shop>
+      <shop>Store #7</shop>
     </shops>
   </product>
 </products>
