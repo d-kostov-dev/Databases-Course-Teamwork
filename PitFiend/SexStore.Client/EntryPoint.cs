@@ -17,6 +17,7 @@
     using MongoDB.Driver;
     using SexStore.MongoServer.Data.Imports;
     using SexStore.MongoServer.Data.Initialization;
+    using System.Xml.Linq;
 
     public class EntryPoint
     {
@@ -190,9 +191,10 @@
 
                 Console.Write("Enter file path: ");
                 var filePath = Console.ReadLine();
-                // TO DO:
 
-                Console.Clear();
+                ImportXMLData(filePath);
+
+                //Console.Clear();
 
                 // IF TRUE
                 Console.WriteLine("Import Completed");
@@ -240,6 +242,44 @@
 
             Console.WriteLine();
             ShowMenu();
+        }
+
+        private static void ImportXMLData(string filePath)
+        {
+            try
+            {
+                XDocument xmlDoc = XDocument.Load(filePath);
+
+                var sales =
+                from sale in xmlDoc.Descendants("sale")
+                select new
+                {
+                    pid = int.Parse(sale.Element("productId").Value),
+                    sid = int.Parse(sale.Element("shopId").Value),
+                    qua = int.Parse(sale.Element("quantity").Value),
+                    date = DateTime.Parse(sale.Element("saleDate").Value),
+                };
+
+                var sqlServerConnection = new SQLServerContextFactory().Create();
+
+                foreach (var sale in sales)
+                {
+                    var newSale = new Sale();
+                    newSale.Product = sqlServerConnection.Products.Find(sale.pid);
+                    newSale.Shop = sqlServerConnection.Shops.Find(sale.sid);
+                    newSale.Quantity = sale.qua;
+                    newSale.SaleDate = sale.date;
+                    sqlServerConnection.Sales.Add(newSale);
+                }
+
+                sqlServerConnection.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                return;
+            }
         }
  
         private static void XMLtoMongo(string filePath)
