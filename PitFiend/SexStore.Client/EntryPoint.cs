@@ -66,7 +66,7 @@
 
             Console.WriteLine("'SP' - Shows all products in the SQLServer Database"); // DONE
             Console.WriteLine("'ZEX - Exports information from ZIP file and loads it to SQLServer'"); // DONE
-            Console.WriteLine("'MIP' - Imports products from MongoDB to SQLServer");
+            Console.WriteLine("'MIP' - Imports products from MongoDB to SQLServer"); // DONE
 
             Console.WriteLine();
             Console.WriteLine("PDF Operations:");
@@ -80,7 +80,7 @@
             Console.WriteLine("'QXML' - Generates XML report for 'Available Quantities'"); // DONE
             Console.WriteLine("'SXML' - Generates XML report for 'Sales'"); // DONE
             Console.WriteLine("'XMLS' - Imports data from XML to SQLServer");
-            Console.WriteLine("'XMLM' - Imports data from XML to MongoDB");
+            Console.WriteLine("'XMLM' - Imports data from XML to MongoDB"); // DONE
 
             Console.WriteLine();
             Console.WriteLine("Other Operations:");
@@ -143,27 +143,8 @@
             {
                 Console.Clear();
                 Console.WriteLine("Transfering products data from MongoDB to SQL Server...");
-                // TO DO:
-
-                MongoServer mongoServer = new MongoClient(Settings.Default.MongoConnection).GetServer();
-                MongoDatabase sexStore = mongoServer.GetDatabase(Settings.Default.MongoDatabase);
-                int transferredDocs = 0;
-
-                try
-                {
-                    TransferEngine transfer = new TransferEngine(sexStore);
-                    transferredDocs = transfer.TransferData();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-
-                // IF TRUE
-                if (transferredDocs > 0)
-                {
-                    Console.WriteLine("Data Transferred");
-                }
+ 
+                MongoToSQL();
             }
             else if (command == "qpdf")
             {
@@ -222,31 +203,10 @@
                 Console.WriteLine("Importing data from XML to MongoDB...");
                 Console.Write("Enter file path: ");
                 var filePath = Console.ReadLine();
-                // TO DO:
 
                 Console.Clear();
 
-                MongoServer mongoServer = new MongoClient(Settings.Default.MongoConnection).GetServer();
-                MongoDatabase sexStore = mongoServer.GetDatabase(Settings.Default.MongoDatabase);
-
-
-                bool isImportSuccessful = false;
-
-                try
-                {
-                    MongoProductImporter xmlImport = new MongoProductImporter(ImportType.XML, filePath, sexStore);
-                    isImportSuccessful = xmlImport.InitializeImport();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-
-                // IF TRUE
-                if (isImportSuccessful)
-                {
-                    Console.WriteLine("Import Completed");
-                }
+                XMLtoMongo(filePath);
             }
             else if (command == "jsr")
             {
@@ -280,6 +240,53 @@
 
             Console.WriteLine();
             ShowMenu();
+        }
+ 
+        private static void XMLtoMongo(string filePath)
+        {
+            MongoServer mongoServer = new MongoClient(Settings.Default.MongoConnection).GetServer();
+            MongoDatabase sexStore = mongoServer.GetDatabase(Settings.Default.MongoDatabase);
+
+            bool isImportSuccessful = false;
+
+            try
+            {
+                MongoProductImporter xmlImport = new MongoProductImporter(ImportType.XML, filePath, sexStore);
+                isImportSuccessful = xmlImport.InitializeImport();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            // IF TRUE
+            if (isImportSuccessful)
+            {
+                Console.WriteLine("Import Completed");
+            }
+        }
+ 
+        private static void MongoToSQL()
+        {
+            MongoServer mongoServer = new MongoClient(Settings.Default.MongoConnection).GetServer();
+            MongoDatabase sexStore = mongoServer.GetDatabase(Settings.Default.MongoDatabase);
+            int transferredDocs = 0;
+
+            try
+            {
+                TransferEngine transfer = new TransferEngine(sexStore);
+                transferredDocs = transfer.TransferData();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            // IF TRUE
+            if (transferredDocs > 0)
+            {
+                Console.WriteLine("Data Transferred");
+            }
         }
         
         private static void ShowAllProductsInSQLServer()

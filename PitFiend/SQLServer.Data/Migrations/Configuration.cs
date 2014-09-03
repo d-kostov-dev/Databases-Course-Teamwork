@@ -21,6 +21,8 @@ namespace SQLServer.Data.Migrations
         {
             //// This method will be called after migrating to the latest version.
 
+            context.Database.ExecuteSqlCommand("CREATE UNIQUE INDEX IX_Product_Code ON Products(ProductCode)");
+
             // Cities
             var sofiaCity = new City() { ID = 1, Name = "Sofia" };
             var plovdivCity = new City() { ID = 2, Name = "Plovdiv" };
