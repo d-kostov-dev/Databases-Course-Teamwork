@@ -11,8 +11,8 @@
 
     public sealed class MongoProductImporter
     {
-        private IMongoProductImport importStrategy;
         private readonly IList<Product> products;
+        private IMongoProductImport importStrategy;
 
         public MongoProductImporter(ImportType importType, string fileName, MongoDatabase database)
         {
@@ -23,17 +23,54 @@
 
         public MongoDatabase Database { get; private set; }
 
-        public void InitializeImport()
+        public bool InitializeImport()
         {
-            HashSet<Model.ProductType> types = this.GetAllProductTypes();
-            HashSet<Model.Product> generatedProducts = this.GenerateProductModels(types);
+            HashSet<Model.ProductType> types = this.GetAllNeededProductTypes();
+            Dictionary<string, ICollection<ObjectId>> shops = this.GetAllNeededShops();
+            Dictionary<Model.Product, ICollection<string>> generatedProducts = this.GenerateProductModels(types);
 
-            this.Database.GetCollection("Products").InsertBatch<Model.Product>(generatedProducts);
+            IEnumerable<WriteConcernResult> result =
+                this.Database.GetCollection("Products").InsertBatch<Model.Product>(generatedProducts.Keys);
+
+            MongoCollection<BsonDocument> shopCollection = this.Database.GetCollection("Shops");
+
+            //// lo6o mi e
+            foreach (var shop in shops)
+            {
+                ICollection<ObjectId> products = shop.Value;
+
+                foreach (var product in generatedProducts)
+                {
+                    foreach (string productSeenInShop in product.Value)
+                    {
+                        if (shop.Key == productSeenInShop)
+                        {
+                            products.Add(product.Key.Id);
+                        }
+                    }
+                }
+
+                var update = Update.Set("ProductIds", new BsonArray(products));
+                var query = Query.EQ("Name", shop.Key);
+                shopCollection.Update(query, update);
+            }
+
+            //// WARNING: This check might not be adequate
+            foreach (WriteConcernResult import in result)
+            {
+                if (!import.Ok)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
-        private HashSet<Model.Product> GenerateProductModels(ISet<Model.ProductType> types)
+        private Dictionary<Model.Product, ICollection<string>> GenerateProductModels(ISet<Model.ProductType> types)
         {
-            HashSet<Model.Product> models = new HashSet<Model.Product>();
+            Dictionary<Model.Product, ICollection<string>> models = 
+                new Dictionary<Model.Product, ICollection<string>>();
 
             foreach (Product product in this.products)
             {
@@ -48,13 +85,13 @@
                     typeId,
                     product.CategoryIds);
 
-                models.Add(currentProduct);
+                models.Add(currentProduct, product.Shops);
             }
 
             return models;
         }
 
-        private HashSet<Model.ProductType> GetAllProductTypes()
+        private HashSet<Model.ProductType> GetAllNeededProductTypes()
         {
             HashSet<string> typeNames = new HashSet<string>();
             foreach (Product product in this.products)
@@ -75,6 +112,33 @@
             }
 
             return types;
+        }
+
+        private Dictionary<string, ICollection<ObjectId>> GetAllNeededShops()
+        {
+            HashSet<string> shopNames = new HashSet<string>();
+            foreach (Product product in this.products)
+            {
+                foreach (string shopName in product.Shops)
+                {
+                    shopNames.Add(shopName);
+                }
+            }
+
+            var query = Query.In("Name", new BsonArray(shopNames));
+
+            MongoCursor<Model.Shop> shopsCursor =
+            this.Database.GetCollection("Shops")
+                .FindAs<Model.Shop>(query);
+
+            Dictionary<string, ICollection<ObjectId>> shops = 
+                new Dictionary<string, ICollection<ObjectId>>();
+            foreach (Model.Shop shop in shopsCursor)
+            {
+                shops.Add(shop.Name, shop.ProductIds);
+            }
+
+            return shops;
         }
 
         private void AssignImportStrategy(ImportType importType)

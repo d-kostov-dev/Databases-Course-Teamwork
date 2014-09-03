@@ -80,11 +80,11 @@
             }
             catch (KeyNotFoundException ex)
             {
-                Console.WriteLine("KeyNotFoundException: {0}\n\n{1}", ex.Message, ex.StackTrace);
+                Console.WriteLine("KeyNotFoundException: {0}", ex.Message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception: {0}\n\n{1}", ex.Message, ex.StackTrace);
+                Console.WriteLine("Exception: {0}", ex.Message);
             }
         }
 

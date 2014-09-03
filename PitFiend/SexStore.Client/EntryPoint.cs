@@ -13,6 +13,10 @@
     using SexStore.Models;
     using SQLiteServer.Data;
     using SQLServer.Data;
+    using SexStore.MongoServer.Data.Transfers;
+    using MongoDB.Driver;
+    using SexStore.MongoServer.Data.Imports;
+    using SexStore.MongoServer.Data.Initialization;
 
     public class EntryPoint
     {
@@ -22,6 +26,7 @@
             Console.WriteLine("Loading...");
 
             InitDatabasesMigrations();
+            SeedMongoDatabase();
             ShowMenu();
 
             while (true)
@@ -37,6 +42,18 @@
         {
             // SQL Server
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<SQLServerContext, SQLServer.Data.Migrations.Configuration>());
+        }
+
+        /// <summary>
+        /// Seeds (inserts) initial documents into MongoDB
+        /// </summary>
+        private static void SeedMongoDatabase()
+        {
+            // MongoDB
+            MongoServer mongoServer = new MongoClient(Settings.Default.MongoConnection).GetServer();
+            MongoDatabase sexStore = mongoServer.GetDatabase(Settings.Default.MongoDatabase);
+            Seed seeder = new Seed(sexStore);
+            seeder.Initialize();
         }
 
         /// <summary>
@@ -128,10 +145,25 @@
                 Console.WriteLine("Transfering products data from MongoDB to SQL Server...");
                 // TO DO:
 
-                Console.Clear();
+                MongoServer mongoServer = new MongoClient(Settings.Default.MongoConnection).GetServer();
+                MongoDatabase sexStore = mongoServer.GetDatabase(Settings.Default.MongoDatabase);
+                int transferredDocs = 0;
+
+                try
+                {
+                    TransferEngine transfer = new TransferEngine(sexStore);
+                    transferredDocs = transfer.TransferData();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
 
                 // IF TRUE
-                Console.WriteLine("Data Transfered");
+                if (transferredDocs > 0)
+                {
+                    Console.WriteLine("Data Transferred");
+                }
             }
             else if (command == "qpdf")
             {
@@ -175,7 +207,7 @@
                 Console.Clear();
                 Console.WriteLine("Importing data from XML to SQL Server...");
 
-                Console.Write("Enter file path:");
+                Console.Write("Enter file path: ");
                 var filePath = Console.ReadLine();
                 // TO DO:
 
@@ -188,15 +220,33 @@
             {
                 Console.Clear();
                 Console.WriteLine("Importing data from XML to MongoDB...");
-
-                Console.Write("Enter file path:");
+                Console.Write("Enter file path: ");
                 var filePath = Console.ReadLine();
                 // TO DO:
 
                 Console.Clear();
 
+                MongoServer mongoServer = new MongoClient(Settings.Default.MongoConnection).GetServer();
+                MongoDatabase sexStore = mongoServer.GetDatabase(Settings.Default.MongoDatabase);
+
+
+                bool isImportSuccessful = false;
+
+                try
+                {
+                    MongoProductImporter xmlImport = new MongoProductImporter(ImportType.XML, filePath, sexStore);
+                    isImportSuccessful = xmlImport.InitializeImport();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
                 // IF TRUE
-                Console.WriteLine("Import Completed");
+                if (isImportSuccessful)
+                {
+                    Console.WriteLine("Import Completed");
+                }
             }
             else if (command == "jsr")
             {

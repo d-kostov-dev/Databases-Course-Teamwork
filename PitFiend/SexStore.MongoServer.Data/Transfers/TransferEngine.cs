@@ -18,15 +18,12 @@
 
         private SqlParser Parsed { get; set; }
 
-        public void TransferData()
+        public int TransferData()
         {
             this.Context.Shops.AddRange(this.Parsed.Shops);
             int results = this.Context.SaveChanges();
 
-            if (results > 0)
-            {
-                Console.WriteLine("Data transferred");
-            }
+            return results;
         }
     }
 }
